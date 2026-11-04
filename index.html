@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rose Reel</title>
+<meta name="theme-color" content="#160912">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&family=Figtree:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: a Netflix-style lobby for a dark bedroom. Featured banner, then horizontal poster rows you move through with a remote; a full-screen player on top. Single dark theme on purpose. */
+:root {
+  --bg: #120710;
+  --surface: #22101d;
+  --surface-2: #34182c;
+  --fg: #fdeef5;
+  --muted: #cfa6bb;
+  --accent: #ff7eb9;
+  --accent-ink: #2a0618;
+  --gold: #f3c98b;
+  --line: #4a2340;
+  --glow: rgba(255,126,185,.3);
+  --display: "Limelight", "Didot", "Bodoni MT", Georgia, serif;
+  --body: "Figtree", "Segoe UI", Roboto, system-ui, sans-serif;
+  --gut: max(16px, 3.2vw);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--bg); }
+body { margin: 0; color: var(--fg); font-family: var(--body); font-size: clamp(15px, 1.05vw, 21px); line-height: 1.45; background: var(--bg); overflow-x: hidden; }
+button { font: inherit; color: inherit; }
+.gut { padding-left: max(var(--gut), env(safe-area-inset-left)); padding-right: max(var(--gut), env(safe-area-inset-right)); }
+
+/* Top bar */
+.top { position: absolute; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; gap: 16px; padding-top: max(14px, env(safe-area-inset-top)); padding-bottom: 14px; background: linear-gradient(rgba(18,7,16,.85), transparent); }
+.logo { font-family: var(--display); font-size: clamp(26px, 2.6vw, 44px); margin: 0; letter-spacing: .02em; }
+.logo span { color: var(--accent); }
+.top .spacer { flex: 1; }
+.iconbtn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid transparent; background: rgba(0,0,0,.35); border-radius: 999px; padding: .5em 1em; cursor: pointer; font-weight: 700; }
+.iconbtn:focus-visible, .iconbtn:hover { border-color: var(--accent); outline: none; }
+
+/* Hero */
+.hero { position: relative; min-height: min(78vh, 760px); display: flex; align-items: flex-end; padding-top: 110px; padding-bottom: clamp(28px, 5vw, 80px); overflow: hidden; }
+.hero .bg { position: absolute; inset: 0; background: var(--surface) center 25% / cover no-repeat; }
+.hero .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,7,16,.95) 0%, rgba(18,7,16,.6) 45%, rgba(18,7,16,.1) 100%), linear-gradient(0deg, var(--bg) 0%, transparent 40%); }
+.hero .info { position: relative; max-width: 46rem; display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { color: var(--accent); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: .82em; }
+.hero h2 { font-family: var(--display); font-weight: 400; font-size: clamp(36px, 5vw, 92px); line-height: 1; margin: 0; text-wrap: balance; }
+.hero p { margin: 0; color: var(--fg); opacity: .88; max-width: 60ch; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; border: 3px solid transparent; border-radius: 10px; padding: .7em 1.5em; font-weight: 800; font-size: 1.05em; cursor: pointer; background: rgba(255,255,255,.16); text-decoration: none; }
+.btn.play { background: var(--fg); color: var(--accent-ink); }
+.btn:focus-visible, .btn:hover { border-color: var(--accent); outline: none; box-shadow: 0 0 0 5px var(--glow); }
+.btn svg { width: 1.1em; height: 1.1em; }
+
+/* Rows */
+main { display: flex; flex-direction: column; gap: clamp(22px, 2.6vw, 42px); padding-bottom: 60px; position: relative; z-index: 1; margin-top: -40px; }
+.row h3 { margin: 0 0 10px; font-size: clamp(19px, 1.6vw, 28px); font-weight: 800; }
+.row h3 small { color: var(--muted); font-weight: 600; font-size: .7em; margin-left: 10px; }
+.scroller { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(220px, 19vw, 360px); gap: clamp(10px, 1vw, 16px); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding: 12px 0 18px; scrollbar-width: none; }
+.scroller::-webkit-scrollbar { display: none; }
+.row.tall .scroller { grid-auto-columns: clamp(150px, 13vw, 240px); }
+
+.tile { position: relative; display: block; width: 100%; padding: 0; border: 3px solid transparent; border-radius: 10px; overflow: hidden; background: var(--surface); cursor: pointer; text-align: left; scroll-snap-align: start; transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
+.tile:hover, .tile:focus-visible { transform: scale(1.06); border-color: var(--accent); box-shadow: 0 0 0 5px var(--glow), 0 16px 34px rgba(0,0,0,.6); outline: none; z-index: 2; }
+.tile .art { aspect-ratio: 16 / 9; width: 100%; background: linear-gradient(135deg, var(--surface-2), var(--surface)); display: grid; place-items: center; overflow: hidden; }
+.row.tall .tile .art { aspect-ratio: 2 / 3; }
+.tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile .art .ph { font-family: var(--display); font-size: 1.35em; text-align: center; padding: 12px; line-height: 1.1; text-wrap: balance; }
+.tile .cap { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 2px; }
+.tile .t { font-weight: 700; font-size: .95em; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tile .s { color: var(--muted); font-size: .8em; }
+.tile .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255,255,255,.2); }
+.tile .bar i { display: block; height: 100%; background: var(--accent); }
+.tile .badge { position: absolute; top: 8px; left: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 800; font-size: .7em; letter-spacing: .08em; text-transform: uppercase; padding: .2em .55em; border-radius: 5px; }
+.notice { color: var(--muted); border: 2px dashed var(--line); border-radius: 12px; padding: 18px; margin: 0; max-width: 70ch; }
+
+/* Overlays */
+.layer { position: fixed; inset: 0; z-index: 30; background: rgba(10,4,9,.97); display: flex; flex-direction: column; }
+.layer .bar2 { display: flex; align-items: center; gap: 14px; padding-top: max(14px, env(safe-area-inset-top)); padding-bottom: 12px; }
+.layer h4 { flex: 1; margin: 0; font-size: clamp(18px, 1.8vw, 30px); font-weight: 800; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.layer .content { flex: 1; min-height: 0; overflow: auto; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 14px; padding: 10px 0; }
+#player { background: #000; }
+#player .stage { flex: 1; min-height: 0; position: relative; }
+#player video, #player iframe, #player #ytmount { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+#player .bar2 { position: absolute; top: 0; left: 0; right: 0; z-index: 3; background: linear-gradient(rgba(0,0,0,.85), transparent); transition: opacity .3s; }
+#player.idle .bar2 { opacity: 0; }
+#player.idle .bar2:focus-within { opacity: 1; }
+.msg { color: var(--muted); font-size: 1.1em; text-align: center; padding: 40px 16px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.msg strong { color: var(--fg); }
+.spinner { width: 46px; height: 46px; border-radius: 50%; border: 4px solid var(--line); border-top-color: var(--accent); animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.searchbox { display: flex; gap: 10px; }
+.searchbox input { flex: 1; min-width: 0; font: inherit; font-size: 1.15em; color: var(--fg); background: var(--surface); border: 2px solid var(--line); border-radius: 10px; padding: .7em 1em; }
+.searchbox input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.upnext { position: absolute; right: max(16px, env(safe-area-inset-right)); bottom: max(70px, calc(env(safe-area-inset-bottom) + 70px)); z-index: 4; }
+footer { color: var(--muted); font-size: .85em; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+footer p { margin: 0 0 6px; max-width: 80ch; }
+kbd { font-family: var(--body); font-weight: 700; background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 0 .4em; color: var(--fg); }
+@media (max-width: 600px) { .hero { min-height: 70vh; } .hero .bg::after { background: linear-gradient(0deg, var(--bg) 10%, rgba(18,7,16,.55) 60%, rgba(18,7,16,.3)); } }
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover, .tile:focus-visible { transform: none; } .spinner { animation-duration: 3s; } }
+</style>
+</head>
+<body>
+<header class="top gut">
+  <h1 class="logo">Rose <span>Reel</span></h1>
+  <div class="spacer"></div>
+  <button class="iconbtn nav" id="openSearch" type="button" aria-label="Search">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Search
+  </button>
+</header>
+
+<section class="hero gut" id="hero">
+  <div class="bg" id="heroBg"></div>
+  <div class="info">
+    <div class="eyebrow" id="heroEyebrow">Featured</div>
+    <h2 id="heroTitle">Rose Reel</h2>
+    <div class="meta" id="heroMeta"></div>
+    <p id="heroDesc">Free films and shows, playing right here.</p>
+    <div class="actions">
+      <button class="btn play nav" id="heroPlay" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Play</button>
+      <button class="btn nav" id="heroList" type="button">+ My list</button>
+    </div>
+  </div>
+</section>
+
+<main class="gut" id="rows"></main>
+
+<footer class="gut">
+  <p>Everything on Rose Reel is free and legal: films released by their makers or now in the public domain (from the Internet Archive), and full movies that studios and producers post on their official YouTube channels. YouTube films include YouTube's ads.</p>
+  <p>Remote: <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>OK</kbd> play · <kbd>Back</kbd> close · in the player <kbd>OK</kbd> pause, <kbd>←</kbd><kbd>→</kbd> skip 10s.</p>
+</footer>
+
+<div class="layer gut" id="panel" hidden>
+  <div class="bar2">
+    <h4 id="panelTitle"></h4>
+    <button class="btn nav" id="panelClose" type="button">Back</button>
+  </div>
+  <div class="content" id="panelBody"></div>
+</div>
+
+<div class="layer" id="player" hidden>
+  <div class="bar2 gut">
+    <h4 id="playerTitle"></h4>
+    <button class="btn nav" id="playerList" type="button">+ My list</button>
+    <button class="btn nav" id="playerClose" type="button">Back</button>
+  </div>
+  <div class="stage" id="stage"></div>
+</div>
+
+<script>
+"use strict";
+/* ================= Settings =================
+   Paste the YouTube Data API v3 key between the quotes. Without it, only the Archive rows show. */
+const YT_KEY = "AIzaSyB9KAj2_it84N0bocK-D9bW0V5iY7R6iNQ";
+
+/* YouTube rows: official channels that post full, free movies. `name` is used to find the channel if the handle changes. */
+const YT_ROWS = [
+  { id: "nolly", title: "New Nollywood", sub: "Fresh full movies from official producers", min: 2400, channels: [
+    { handle: "@IBAKATV", name: "IBAKATV" },
+    { handle: "@RuthKadiri247", name: "Ruth Kadiri 247" },
+    { handle: "@NollyPlusTV", name: "Nolly Plus TV" },
+    { handle: "@ChizzyAlichiTV", name: "Chizzy Alichi TV" }
+  ]},
+  { id: "hwood", title: "Free Hollywood movies", sub: "From FilmRise, Popcornflix and Movie Central", min: 3600, channels: [
+    { handle: "@FilmRiseMovies", name: "FilmRise Movies" },
+    { handle: "@Popcornflix", name: "Popcornflix" },
+    { handle: "@MovieCentral", name: "Movie Central" }
+  ]},
+  { id: "vault", title: "From the Paramount Vault", sub: "Studio films, free with ads", min: 3600, channels: [
+    { handle: "@ParamountVault", name: "Paramount Vault" }
+  ]},
+  { id: "tvclassics", title: "TV comedy marathons", sub: "Full episodes from official channels", min: 1200, channels: [
+    { handle: "@FilmRiseTV", name: "FilmRise TV" },
+    { handle: "@FilmRiseClassicTV", name: "FilmRise Classic TV" }
+  ]}
+];
+
+/* Archive rows (public domain or free licence). kind: film / short / show. `id` pins a known Archive copy. */
+const IA_ROWS = [
+  { title: "Blender Studio shorts", sub: "Animated films, free for everyone", items: [
+    { t: "Charge", y: 2022, kind: "short", id: "charge-blender-open-movie-1608p", x: "blender", b: "An old man breaks into a fortified energy plant to save his granddaughter." },
+    { t: "Sprite Fight", y: 2021, kind: "short", id: "SpriteFight", x: "blender", b: "Forest sprites wage a petty, hilarious war over a picnic spot." },
+    { t: "Coffee Run", y: 2020, kind: "short", id: "coffee-run", x: "blender", b: "A caffeine-fuelled sprint through one woman's worst morning." },
+    { t: "Spring", y: 2019, kind: "short", id: "springopenmovie", x: "blender", b: "A shepherd girl and her dog face ancient spirits to bring back spring." },
+    { t: "Agent 327: Operation Barbershop", y: 2017, kind: "short", id: "agent-327-operation-barbershop", x: "blender", b: "A secret agent's undercover haircut goes very wrong." },
+    { t: "Cosmos Laundromat", y: 2015, kind: "short", id: "cosmos-laundromat", x: "blender", b: "A desperate sheep is offered a new life by a mysterious salesman." },
+    { t: "Tears of Steel", y: 2012, kind: "short", x: "blender", b: "Robots overrun Amsterdam in this live-action effects short." },
+    { t: "Sintel", y: 2010, kind: "short", id: "Sintel", x: "blender", b: "A girl searches for the baby dragon she raised." },
+    { t: "Big Buck Bunny", y: 2008, kind: "short", x: "blender", b: "A giant rabbit gets revenge on three bullies." },
+    { t: "Elephants Dream", y: 2006, kind: "short", x: "blender", b: "The very first Blender film: two men inside a strange machine world." }
+  ]},
+  { title: "Classic sitcoms", sub: "Full episodes", items: [
+    { t: "The Beverly Hillbillies", y: 1962, kind: "show", b: "A mountain family strikes oil and moves to Beverly Hills." },
+    { t: "The Lucy Show", y: 1962, kind: "show", b: "Lucille Ball's follow-up to I Love Lucy." },
+    { t: "The Dick Van Dyke Show", y: 1961, kind: "show", b: "A comedy writer's life at home and in the writers' room." },
+    { t: "The Andy Griffith Show", y: 1960, kind: "show", b: "Small-town sheriff Andy keeps Mayberry calm." },
+    { t: "Petticoat Junction", y: 1963, kind: "show", b: "A widow and her three daughters run a country hotel." },
+    { t: "The Jack Benny Program", y: 1950, kind: "show", b: "TV's most famous tightwad." },
+    { t: "Burns and Allen", y: 1950, kind: "show", q: "George Burns Gracie Allen", b: "George plays it straight; Gracie wins every argument." },
+    { t: "The Three Stooges", y: 1940, kind: "show", b: "Moe, Larry and Curly at their most chaotic." }
+  ]},
+  { title: "Free to share", sub: "Made since 2005 and released free by their makers", items: [
+    { t: "Sita Sings the Blues", y: 2008, kind: "film", id: "Sita_Sings_the_Blues", b: "A funny, gorgeous retelling of the Ramayana set to 1920s jazz." },
+    { t: "The Cosmonaut", y: 2013, kind: "film", b: "A love triangle between two cosmonauts and the woman who waits for them." },
+    { t: "Star Wreck: In the Pirkinning", y: 2005, kind: "film", id: "StarWreckInThePirkining", q: "Star Wreck", b: "The Finnish space-opera parody that became a cult hit." },
+    { t: "Pioneer One", y: 2010, kind: "show", b: "A capsule from Mars falls in Canada, and a boy is inside." },
+    { t: "Valkaama", y: 2010, kind: "film", b: "A road trip across Germany to find a mysterious lake." },
+    { t: "Nasty Old People", y: 2009, kind: "film", b: "A young carer and the elderly people she looks after." }
+  ]},
+  { title: "Date night", sub: "Romance and charm", items: [
+    { t: "Charade", y: 1963, kind: "film", b: "Audrey Hepburn and Cary Grant in Paris, chased by her late husband's crooks." },
+    { t: "Royal Wedding", y: 1951, kind: "film", b: "Fred Astaire dances on the ceiling." },
+    { t: "Penny Serenade", y: 1941, kind: "film", b: "A marriage told through the records a couple played." },
+    { t: "Made for Each Other", y: 1939, kind: "film", b: "James Stewart and Carole Lombard as newlyweds finding their feet." },
+    { t: "Love Affair", y: 1939, kind: "film", b: "The shipboard romance later remade as An Affair to Remember." }
+  ]},
+  { title: "Laugh out loud", sub: "Comedy classics", items: [
+    { t: "His Girl Friday", y: 1940, kind: "film", b: "The fastest-talking newspaper comedy ever made." },
+    { t: "My Man Godfrey", y: 1936, kind: "film", b: "A rich family hires a 'forgotten man' as their butler." },
+    { t: "Animal Crackers", y: 1930, kind: "film", b: "The Marx Brothers crash a society party. Free since 2026." },
+    { t: "McLintock!", y: 1963, kind: "film", b: "John Wayne and Maureen O'Hara feud on a cattle ranch." },
+    { t: "Jack and the Beanstalk", y: 1952, kind: "film", b: "Abbott and Costello take on the giant." }
+  ]},
+  { title: "Lights off", sub: "Thrillers and horror", items: [
+    { t: "Night of the Living Dead", y: 1968, kind: "film", b: "The film that invented the modern zombie." },
+    { t: "Carnival of Souls", y: 1962, kind: "film", b: "A woman survives a crash and is drawn to an empty pavilion." },
+    { t: "House on Haunted Hill", y: 1959, kind: "film", b: "Vincent Price pays guests to survive one night." },
+    { t: "The Last Man on Earth", y: 1964, kind: "film", b: "The first film version of I Am Legend." },
+    { t: "Detour", y: 1945, kind: "film", b: "A hitchhiker's luck goes from bad to fatal." },
+    { t: "The Little Shop of Horrors", y: 1960, kind: "film", b: "A florist's plant develops a taste for people." }
+  ]},
+  { title: "Silent legends", sub: "No dialogue needed", items: [
+    { t: "The General", y: 1926, kind: "film", b: "Buster Keaton chases his stolen train." },
+    { t: "Sherlock Jr.", y: 1924, kind: "film", min: 1800, b: "A projectionist dreams his way into the movie." },
+    { t: "The Kid", y: 1921, kind: "film", b: "Chaplin's tramp raises an abandoned boy." },
+    { t: "The Gold Rush", y: 1925, kind: "film", b: "Chaplin in the Klondike, eating his boot." },
+    { t: "Nosferatu", y: 1922, kind: "film", b: "The original vampire film." }
+  ]}
+];
+
+/* ================= Helpers ================= */
+const $ = id => document.getElementById(id);
+const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+const store = {
+  get(k, d = null) { try { const v = localStorage.getItem("rr2:" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("rr2:" + k, JSON.stringify(v)); } catch (e) {} }
+};
+const ytKey = () => YT_KEY || store.get("ytkey", "");
+(function takeKeyFromURL() {
+  try {
+    const k = new URLSearchParams(location.search).get("key");
+    if (k) { store.set("ytkey", k); history.replaceState(null, "", location.pathname); }
+  } catch (e) {}
+})();
+
+/* ================= Internet Archive ================= */
+const MIN = { film: 2400, short: 120, show: 300 };
+const BAD_ID = /trailer|soundtrack|score|teaser|clip|twitter-|youtube-|torrent|interview|promo|review|reaction|_sample|wiki-|fav-/i;
+const PD_COLLECTIONS = "collection:(feature_films OR classic_tv OR Film_Noir OR SciFi_Horror OR Comedy_Films OR silent_films OR classic_cartoons OR moviesandfilms)";
+let jsonpN = 0;
+function jsonp(url) {
+  return new Promise((resolve, reject) => {
+    const cb = "rrcb" + (++jsonpN) + "_" + Date.now();
+    const s = document.createElement("script");
+    const done = () => { delete window[cb]; s.remove(); };
+    const timer = setTimeout(() => { done(); reject(new Error("timeout")); }, 15000);
+    window[cb] = data => { clearTimeout(timer); done(); resolve(data); };
+    s.onerror = () => { clearTimeout(timer); done(); reject(new Error("network")); };
+    s.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cb;
+    document.head.appendChild(s);
+  });
+}
+async function getJSON(url, allowJsonp = true) {
+  try {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return await r.json();
+  } catch (e) {
+    if (!allowJsonp) throw e;
+    return jsonp(url);
+  }
+}
+async function iaSearch(q, rows = 12, sort = "downloads desc") {
+  const p = new URLSearchParams();
+  p.set("q", q);
+  ["identifier", "title", "year"].forEach(f => p.append("fl[]", f));
+  p.append("sort[]", sort);
+  p.set("rows", String(rows));
+  p.set("output", "json");
+  const data = await getJSON("https://archive.org/advancedsearch.php?" + p.toString());
+  return ((data && data.response && data.response.docs) || []).map(d => ({ ...d, title: Array.isArray(d.title) ? d.title[0] : d.title }));
+}
+const metaMemo = new Map();
+function iaMeta(id) {
+  if (!metaMemo.has(id)) metaMemo.set(id, getJSON("https://archive.org/metadata/" + encodeURIComponent(id)).catch(e => { metaMemo.delete(id); throw e; }));
+  return metaMemo.get(id);
+}
+function secs(v) {
+  if (v == null) return 0;
+  const s = String(v);
+  if (s.includes(":")) return s.split(":").reduce((a, n) => a * 60 + (parseFloat(n) || 0), 0);
+  return parseFloat(s) || 0;
+}
+function videosFrom(meta) {
+  const files = (meta && meta.files) || [];
+  const rank = f => {
+    const n = f.name.toLowerCase(), fmt = (f.format || "").toLowerCase();
+    let r = 0;
+    if (n.endsWith(".mp4") || n.endsWith(".m4v")) r += 100;
+    if (fmt === "h.264") r += 30; else if (fmt.includes("h.264")) r += 25; else if (fmt === "mpeg4") r += 20; else if (fmt.includes("512kb")) r += 10;
+    if (n.endsWith(".webm")) r += 40;
+    return r;
+  };
+  const groups = new Map();
+  for (const f of files) {
+    if (!/\.(mp4|m4v|webm|ogv)$/i.test(f.name) || BAD_ID.test(f.name)) continue;
+    const key = (f.source === "derivative" && f.original) ? f.original : f.name;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(f);
+  }
+  const out = [];
+  for (const [key, g] of groups) {
+    g.sort((a, b) => rank(b) - rank(a));
+    const len = Math.max(...g.map(f => secs(f.length)), secs((files.find(f => f.name === key) || {}).length));
+    out.push({ name: g[0].name, len, label: (g[0].title || key).replace(/\.[a-z0-9]+$/i, "").replace(/_+/g, " ") });
+  }
+  out.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+  return out;
+}
+const iaFile = (id, name) => "https://archive.org/download/" + encodeURIComponent(id) + "/" + name.split("/").map(encodeURIComponent).join("/");
+const iaThumb = id => "https://archive.org/services/img/" + encodeURIComponent(id);
+const quote = s => '"' + s.replace(/["\\]/g, " ") + '"';
+
+async function resolveFilm(item) {
+  const key = "film:" + item.t + ":" + item.y;
+  const hit = store.get(key);
+  if (hit) return hit;
+  const min = item.min || MIN[item.kind];
+  const term = item.q || item.t;
+  const queries = [];
+  if (item.x) queries.push(`title:(${quote(term)}) AND mediatype:movies AND ${item.x}`);
+  queries.push(`title:(${quote(term)}) AND mediatype:movies AND year:${item.y}`, `title:(${quote(term)}) AND mediatype:movies`);
+  let first = true;
+  for (const q of queries) {
+    let docs = [];
+    try { docs = (await iaSearch(q, 10)).filter(d => !BAD_ID.test(d.identifier)); } catch (e) { if (!item.id) throw e; }
+    if (first && item.id) docs = [{ identifier: item.id }].concat(docs.filter(d => d.identifier !== item.id));
+    first = false;
+    for (const d of docs) {
+      try {
+        const vids = videosFrom(await iaMeta(d.identifier));
+        const best = vids.slice().sort((a, b) => b.len - a.len)[0];
+        if (best && (best.len === 0 || best.len >= min)) {
+          const res = { id: d.identifier };
+          store.set(key, res);
+          return res;
+        }
+      } catch (e) { /* try next copy */ }
+    }
+  }
+  return null;
+}
+
+/* ================= YouTube ================= */
+const YT_API = "https://www.googleapis.com/youtube/v3/";
+async function yt(path, params) {
+  const p = new URLSearchParams({ ...params, key: ytKey() });
+  const r = await fetch(YT_API + path + "?" + p.toString());
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) { const err = new Error((data.error && data.error.message) || ("HTTP " + r.status)); err.status = r.status; throw err; }
+  return data;
+}
+function isoSecs(d) {
+  const m = /P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/.exec(d || "");
+  if (!m) return 0;
+  return (+m[1] || 0) * 86400 + (+m[2] || 0) * 3600 + (+m[3] || 0) * 60 + (+m[4] || 0);
+}
+async function uploadsPlaylist(ch) {
+  const key = "ch:" + ch.handle;
+  const hit = store.get(key);
+  if (hit) return hit;
+  let res = await yt("channels", { part: "contentDetails", forHandle: ch.handle });
+  if (!res.items || !res.items.length) {
+    const s = await yt("search", { part: "snippet", type: "channel", q: ch.name, maxResults: "1" });
+    const cid = s.items && s.items[0] && s.items[0].snippet && s.items[0].snippet.channelId;
+    if (!cid) return null;
+    res = await yt("channels", { part: "contentDetails", id: cid });
+  }
+  const pl = res.items && res.items[0] && res.items[0].contentDetails.relatedPlaylists.uploads;
+  if (pl) store.set(key, pl);
+  return pl || null;
+}
+const bestThumb = th => th && (th.maxres || th.standard || th.high || th.medium || th.default || {}).url;
+const cleanTitle = t => t.replace(/\s*[|\-–]\s*(latest|new|trending|full movie|nollywood|nigerian|african)[^|]*$/i, "").replace(/\s{2,}/g, " ").trim() || t;
+async function channelMovies(ch, min) {
+  const pl = await uploadsPlaylist(ch);
+  if (!pl) return [];
+  const list = await yt("playlistItems", { part: "contentDetails", playlistId: pl, maxResults: "50" });
+  const ids = (list.items || []).map(i => i.contentDetails.videoId).filter(Boolean);
+  if (!ids.length) return [];
+  const v = await yt("videos", { part: "snippet,contentDetails,status", id: ids.join(","), maxResults: "50" });
+  return (v.items || [])
+    .filter(x => x.status && x.status.embeddable !== false && x.snippet.liveBroadcastContent === "none" && isoSecs(x.contentDetails.duration) >= min)
+    .map(x => ({
+      src: "yt", key: "yt:" + x.id, ytId: x.id,
+      title: cleanTitle(x.snippet.title), full: x.snippet.title,
+      desc: (x.snippet.description || "").split("\n").find(l => l.trim().length > 40) || "",
+      thumb: bestThumb(x.snippet.thumbnails), dur: isoSecs(x.contentDetails.duration),
+      sub: ch.name, date: x.snippet.publishedAt
+    }));
+}
+async function ytRow(row) {
+  const cacheKey = "row:" + row.id;
+  const hit = store.get(cacheKey);
+  if (hit && Date.now() - hit.at < 6 * 3600e3 && hit.items.length) return hit.items;
+  const results = await Promise.allSettled(row.channels.map(ch => channelMovies(ch, row.min)));
+  const items = results.flatMap(r => r.status === "fulfilled" ? r.value : []);
+  const firstErr = results.find(r => r.status === "rejected");
+  if (!items.length && firstErr) throw firstErr.reason;
+  items.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  const seen = new Set();
+  const out = items.filter(i => !seen.has(i.ytId) && seen.add(i.ytId)).slice(0, 40);
+  store.set(cacheKey, { at: Date.now(), items: out });
+  return out;
+}
+let ytApiReady = null;
+function loadYTApi() {
+  if (ytApiReady) return ytApiReady;
+  ytApiReady = new Promise((resolve, reject) => {
+    if (window.YT && window.YT.Player) return resolve(window.YT);
+    window.onYouTubeIframeAPIReady = () => resolve(window.YT);
+    const s = document.createElement("script");
+    s.src = "https://www.youtube.com/iframe_api";
+    s.onerror = () => { ytApiReady = null; reject(new Error("YouTube player failed to load")); };
+    document.head.appendChild(s);
+  });
+  return ytApiReady;
+}
+
+/* ================= Library state ================= */
+const progress = () => store.get("progress", {});
+function saveProgress(card, t, d) {
+  if (!card || !d || t < 15) return;
+  const p = progress();
+  if (t / d > 0.95) delete p[card.key];
+  else p[card.key] = { t: Math.floor(t), d: Math.floor(d), at: Date.now(), card: slim(card) };
+  store.set("progress", p);
+}
+const slim = c => ({ src: c.src, key: c.key, ytId: c.ytId, title: c.title, desc: c.desc, thumb: c.thumb, sub: c.sub, dur: c.dur, kind: c.kind, iaId: c.iaId, file: c.file, item: c.item });
+const myList = () => store.get("mylist", []);
+const inList = key => myList().some(c => c.key === key);
+function toggleList(card) {
+  let l = myList();
+  if (inList(card.key)) l = l.filter(c => c.key !== card.key); else l.unshift(slim(card));
+  store.set("mylist", l);
+  renderLibraryRows();
+  return inList(card.key);
+}
+
+/* ================= Cards & rows ================= */
+function iaCard(item) {
+  return { src: "ia", key: "ia:" + item.t + ":" + item.y, item, title: item.t, desc: item.b, kind: item.kind, sub: String(item.y) + (item.kind === "show" ? " · Episodes" : item.kind === "short" ? " · Short" : ""), thumb: item.id ? iaThumb(item.id) : (store.get("film:" + item.t + ":" + item.y) || {}).id ? iaThumb(store.get("film:" + item.t + ":" + item.y).id) : null };
+}
+const fmtDur = s => s >= 3600 ? Math.floor(s / 3600) + "h " + Math.round((s % 3600) / 60) + "m" : Math.round(s / 60) + " min";
+const lazyArt = new IntersectionObserver(entries => {
+  for (const e of entries) if (e.isIntersecting) { lazyArt.unobserve(e.target); fillArt(e.target); }
+}, { rootMargin: "200px" });
+const artQueue = [];
+let artBusy = 0;
+function fillArt(tile) {
+  artQueue.push(tile);
+  pumpArt();
+}
+function pumpArt() {
+  while (artBusy < 2 && artQueue.length) {
+    const tile = artQueue.shift();
+    const card = tile._card;
+    artBusy++;
+    (card.item.kind === "show"
+      ? iaSearch(`title:(${quote(card.item.q || card.item.t)}) AND collection:classic_tv`, 1).then(d => d[0] && { id: d[0].identifier })
+      : resolveFilm(card.item))
+      .then(res => { if (res && res.id) setArt(tile, iaThumb(res.id)); })
+      .catch(() => {})
+      .finally(() => { artBusy--; pumpArt(); });
+  }
+}
+function setArt(tile, url) {
+  const art = tile.querySelector(".art");
+  const img = el("img");
+  img.alt = ""; img.loading = "lazy"; img.src = url;
+  img.onerror = () => img.remove();
+  art.replaceChildren(img);
+}
+function tile(card, opts = {}) {
+  const b = el("button", "tile nav");
+  b.type = "button";
+  b._card = card;
+  const art = el("div", "art");
+  if (card.thumb) {
+    const img = el("img");
+    img.alt = ""; img.loading = "lazy"; img.src = card.thumb;
+    img.onerror = () => { img.remove(); art.append(el("div", "ph", card.title)); };
+    art.append(img);
+  } else {
+    art.append(el("div", "ph", card.title));
+    if (card.src === "ia") lazyArt.observe(b);
+  }
+  b.append(art);
+  const cap = el("div", "cap");
+  cap.append(el("div", "t", card.title));
+  cap.append(el("div", "s", [card.sub, card.dur ? fmtDur(card.dur) : ""].filter(Boolean).join(" · ")));
+  b.append(cap);
+  if (opts.badge) b.append(el("span", "badge", opts.badge));
+  if (opts.prog) { const bar = el("div", "bar"); const i = el("i"); i.style.width = Math.min(100, Math.round(opts.prog * 100)) + "%"; bar.append(i); b.append(bar); }
+  b.addEventListener("click", () => (opts.onClick ? opts.onClick() : openCard(card)));
+  return b;
+}
+function rowShell(id, title, sub) {
+  let sec = document.getElementById("row-" + id);
+  if (!sec) { sec = el("section", "row"); sec.id = "row-" + id; }
+  const h = el("h3", null, title);
+  if (sub) h.append(el("small", null, sub));
+  const sc = el("div", "scroller");
+  sec.replaceChildren(h, sc);
+  return { sec, sc };
+}
+function renderLibraryRows() {
+  const main = $("rows");
+  const p = progress();
+  const cont = Object.values(p).sort((a, b) => b.at - a.at).slice(0, 20);
+  const cw = rowShell("continue", "Continue watching");
+  cont.forEach(e => cw.sc.append(tile(e.card, { prog: e.t / e.d })));
+  cw.sec.hidden = !cont.length;
+  const ml = rowShell("mylist", "My list");
+  myList().forEach(c => ml.sc.append(tile(c)));
+  ml.sec.hidden = !myList().length;
+  if (!cw.sec.parentNode) main.prepend(cw.sec);
+  if (!ml.sec.parentNode) cw.sec.after(ml.sec);
+}
+function renderRows() {
+  const main = $("rows");
+  main.replaceChildren();
+  renderLibraryRows();
+  if (ytKey()) {
+    for (const row of YT_ROWS) {
+      const { sec, sc } = rowShell(row.id, row.title, row.sub);
+      for (let i = 0; i < 6; i++) { const ph = el("div", "tile"); ph.append(el("div", "art")); sc.append(ph); }
+      main.append(sec);
+      ytRow(row).then(items => {
+        sc.replaceChildren();
+        if (!items.length) { sec.hidden = true; return; }
+        items.forEach((c, i) => sc.append(tile(c, { badge: row.id === "nolly" && i < 3 ? "New" : null })));
+        if (row.id === "nolly") { heroLocked = true; setHero(items[0], "New on Rose Reel"); }
+        else if (!heroLocked && heroFromIA) { heroFromIA = false; setHero(items[0], row.title); }
+      }).catch(err => {
+        const msg = /quota/i.test(err.message) ? "YouTube's daily limit is used up. These rows come back tomorrow." :
+          (err.status === 400 || err.status === 403) ? "The YouTube key isn't working yet. Check it allows this website and the YouTube Data API." :
+          "Couldn't load this row. Check the internet connection.";
+        sc.replaceChildren(el("p", "notice", msg));
+      });
+    }
+  } else {
+    const n = rowShell("ytsetup", "Recent movies");
+    n.sc.replaceWith(el("p", "notice", "Recent Nollywood and Hollywood films appear here once the YouTube key is added."));
+    main.append(n.sec);
+  }
+  IA_ROWS.forEach((r, i) => {
+    const { sec, sc } = rowShell("ia" + i, r.title, r.sub);
+    r.items.forEach(it => sc.append(tile(iaCard(it))));
+    main.append(sec);
+  });
+  if (!heroSet) { setHero(iaCard(IA_ROWS[0].items[0]), "Featured short"); heroFromIA = true; }
+}
+
+/* ================= Hero ================= */
+let heroSet = false, heroCard = null, heroLocked = false, heroFromIA = false;
+function setHero(card, eyebrow) {
+  heroSet = true;
+  heroCard = card;
+  $("heroEyebrow").textContent = eyebrow;
+  $("heroTitle").textContent = card.title;
+  $("heroDesc").textContent = card.desc || "";
+  $("heroMeta").replaceChildren(...[card.sub, card.dur ? fmtDur(card.dur) : ""].filter(Boolean).map(t => el("span", null, t)));
+  $("heroBg").style.backgroundImage = card.thumb ? `url("${card.thumb.replace(/"/g, "")}")` : "";
+  $("heroList").textContent = inList(card.key) ? "✓ In my list" : "+ My list";
+}
+$("heroPlay").addEventListener("click", () => heroCard && openCard(heroCard));
+$("heroList").addEventListener("click", () => { if (heroCard) $("heroList").textContent = toggleList(heroCard) ? "✓ In my list" : "+ My list"; });
+
+/* ================= Panels ================= */
+let lastFocus = null;
+function openPanel(title) {
+  lastFocus = document.activeElement;
+  $("panelTitle").textContent = title;
+  $("panelBody").replaceChildren();
+  $("panel").hidden = false;
+  $("panelClose").focus();
+}
+function closePanel() { $("panel").hidden = true; if (lastFocus && document.contains(lastFocus)) lastFocus.focus(); }
+$("panelClose").addEventListener("click", closePanel);
+function busy(container, text) {
+  const m = el("div", "msg");
+  m.append(el("div", "spinner"), el("div", null, text));
+  container.replaceChildren(m);
+}
+function note(container, text, link) {
+  const m = el("div", "msg");
+  m.append(el("div", null, text));
+  if (link) { const a = el("a", "btn nav", link.label); a.href = link.href; a.target = "_blank"; a.rel = "noopener"; m.append(a); }
+  container.replaceChildren(m);
+  const f = m.querySelector(".nav"); if (f) f.focus();
+}
+
+async function openCard(card) {
+  if (card.src === "yt") return playYT(card);
+  if (card.iaId && card.file) return playIA(card, card.iaId, { name: card.file });
+  const item = card.item;
+  if (item.kind === "show") return openShow(card);
+  openPanel(item.t);
+  busy($("panelBody"), "Finding the best copy…");
+  try {
+    const res = await resolveFilm(item);
+    if ($("panel").hidden) return;
+    if (!res) return note($("panelBody"), "No free copy of this one is available right now. Try another title.");
+    await openItemVideos(card, res.id, item.min || MIN[item.kind]);
+  } catch (e) {
+    note($("panelBody"), "Couldn't reach the Internet Archive. Check the internet connection and try again.");
+  }
+}
+async function openItemVideos(card, id, min, list) {
+  const vids = videosFrom(await iaMeta(id)).filter(v => v.len === 0 || v.len >= Math.min(min, 120));
+  if (!vids.length) return note($("panelBody"), "No playable video in this upload. Try another title.");
+  if (vids.length === 1) { closePanel(); return playIA({ ...card, iaId: id, file: vids[0].name, thumb: card.thumb || iaThumb(id) }, id, vids[0], list); }
+  const grid = el("div", "grid");
+  const parts = vids.map((v, i) => ({ ...card, key: card.key + ":" + i, iaId: id, file: v.name, title: card.title + " · " + v.label, thumb: iaThumb(id), dur: v.len }));
+  parts.forEach((c, i) => grid.append(tile(c, { onClick: () => { closePanel(); playIA(c, id, vids[i], { cards: parts, index: i }); } })));
+  $("panelBody").replaceChildren(grid);
+  grid.querySelector(".tile").focus();
+}
+async function openShow(card) {
+  const item = card.item;
+  openPanel(item.t);
+  busy($("panelBody"), "Loading episodes…");
+  try {
+    const term = item.q || item.t;
+    let docs = await iaSearch(`title:(${quote(term)}) AND collection:classic_tv`, 60, "titleSorter asc");
+    if (docs.length < 3) docs = docs.concat(await iaSearch(`title:(${quote(term)}) AND mediatype:movies`, 60));
+    if ($("panel").hidden) return;
+    const seen = new Set();
+    docs = docs.filter(d => !BAD_ID.test(d.identifier) && !seen.has(d.identifier) && seen.add(d.identifier));
+    if (!docs.length) return note($("panelBody"), "No episodes found right now. Try again later.");
+    const eps = docs.map(d => ({ src: "ia", key: "iaep:" + d.identifier, iaId: d.identifier, title: d.title || d.identifier, sub: item.t, thumb: iaThumb(d.identifier), item }));
+    const grid = el("div", "grid");
+    eps.forEach((c, i) => {
+      const t = tile(c, { onClick: async () => {
+        busy($("panelBody"), "Opening episode…");
+        try {
+          const vids = videosFrom(await iaMeta(c.iaId)).filter(v => v.len === 0 || v.len >= 120);
+          if (!vids.length) return note($("panelBody"), "This episode has no playable video. Press Back and pick another.");
+          closePanel();
+          playIA({ ...c, file: vids[0].name }, c.iaId, vids[0], { cards: eps, index: i, episodes: true });
+        } catch (err) { note($("panelBody"), "Couldn't reach the Internet Archive. Try again."); }
+      } });
+      grid.append(t);
+    });
+    $("panelBody").replaceChildren(grid);
+    grid.querySelector(".tile").focus();
+  } catch (e) {
+    note($("panelBody"), "Couldn't reach the Internet Archive. Check the internet connection and try again.");
+  }
+}
+
+/* ================= Player ================= */
+let current = null, ytPlayer = null, progTimer = null, idleTimer = null;
+function openPlayer(card) {
+  if ($("player").hidden) lastFocus = document.activeElement;
+  closeMedia();
+  current = { card };
+  $("playerTitle").textContent = card.title;
+  $("playerList").textContent = inList(card.key) ? "✓ In my list" : "+ My list";
+  $("player").hidden = false;
+  document.body.style.overflow = "hidden";
+  wake();
+}
+function closeMedia() {
+  clearInterval(progTimer);
+  if (ytPlayer) { try { const t = ytPlayer.getCurrentTime(), d = ytPlayer.getDuration(); saveProgress(current && current.card, t, d); ytPlayer.destroy(); } catch (e) {} ytPlayer = null; }
+  const v = $("stage").querySelector("video");
+  if (v) { saveProgress(current && current.card, v.currentTime, v.duration); v.pause(); v.removeAttribute("src"); v.load(); }
+  $("stage").replaceChildren();
+}
+function closePlayer() {
+  closeMedia();
+  current = null;
+  $("player").hidden = true;
+  document.body.style.overflow = "";
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  renderLibraryRows();
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus(); else { const f = document.querySelector(".tile.nav"); if (f) f.focus(); }
+}
+function goFull() { const p = $("player"); if (!document.fullscreenElement && p.requestFullscreen) p.requestFullscreen().catch(() => {}); }
+function wake() {
+  $("player").classList.remove("idle");
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => $("player").classList.add("idle"), 3500);
+}
+["mousemove", "keydown", "touchstart"].forEach(ev => document.addEventListener(ev, () => { if (!$("player").hidden) wake(); }, { passive: true }));
+$("playerClose").addEventListener("click", closePlayer);
+$("playerList").addEventListener("click", () => { if (current) $("playerList").textContent = toggleList(current.card) ? "✓ In my list" : "+ My list"; });
+function stageNote(text, link) {
+  const m = el("div", "msg");
+  m.style.position = "absolute"; m.style.inset = "0"; m.style.justifyContent = "center";
+  m.append(el("div", null, text));
+  if (link) { const a = el("a", "btn nav", link.label); a.href = link.href; a.target = "_blank"; a.rel = "noopener"; m.append(a); }
+  $("stage").replaceChildren(m);
+  $("player").classList.remove("idle");
+  $("playerClose").focus();
+}
+function playIA(card, id, file, list) {
+  openPlayer(card);
+  current.list = list;
+  const v = document.createElement("video");
+  v.controls = true; v.autoplay = true; v.preload = "auto"; v.playsInline = true;
+  v.src = iaFile(id, file.name);
+  v.addEventListener("error", () => stageNote("This copy won't play right now. Press Back and try another title."));
+  const saved = progress()[card.key];
+  if (saved && saved.t > 20) v.addEventListener("loadedmetadata", () => { if (saved.t < v.duration - 30) v.currentTime = saved.t; }, { once: true });
+  v.addEventListener("ended", () => { saveProgress(card, v.duration, v.duration); next(); });
+  $("stage").replaceChildren(v);
+  progTimer = setInterval(() => saveProgress(card, v.currentTime, v.duration), 5000);
+  v.play().catch(() => {});
+  v.focus();
+  goFull();
+}
+async function playYT(card) {
+  openPlayer(card);
+  const mount = el("div"); mount.id = "ytmount";
+  $("stage").replaceChildren(mount);
+  const saved = progress()[card.key];
+  try {
+    const YT = await loadYTApi();
+    if (!current || current.card !== card) return;
+    ytPlayer = new YT.Player("ytmount", {
+      videoId: card.ytId,
+      playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1, iv_load_policy: 3, start: saved && saved.t > 20 ? saved.t : 0 },
+      events: {
+        onReady: e => { e.target.playVideo(); try { e.target.getIframe().focus(); } catch (x) {} },
+        onStateChange: e => { if (e.data === 0) { saveProgress(card, 1, 1); next(); } },
+        onError: e => {
+          const blocked = e.data === 101 || e.data === 150 || e.data === 153;
+          stageNote(blocked ? "The owner of this film only allows it to play on YouTube." : "This video won't play right now. Try another one.",
+            blocked ? { label: "Watch on YouTube", href: "https://www.youtube.com/watch?v=" + encodeURIComponent(card.ytId) } : null);
+        }
+      }
+    });
+    progTimer = setInterval(() => { try { saveProgress(card, ytPlayer.getCurrentTime(), ytPlayer.getDuration()); } catch (e) {} }, 5000);
+    goFull();
+  } catch (e) {
+    stageNote("YouTube's player couldn't load. Check the internet connection and try again.");
+  }
+}
+function next() {
+  const l = current && current.list;
+  if (!l || l.index + 1 >= l.cards.length) return closePlayer();
+  const n = l.cards[l.index + 1];
+  const m = el("div", "msg"); m.style.position = "absolute"; m.style.inset = "0"; m.style.justifyContent = "center";
+  m.append(el("div", null, "Up next"), el("strong", null, n.title));
+  const go = el("button", "btn play nav", "Play now"); go.type = "button";
+  m.append(go);
+  $("stage").replaceChildren(m);
+  go.focus();
+  const t = setTimeout(() => go.click(), 8000);
+  go.addEventListener("click", async () => {
+    clearTimeout(t);
+    try {
+      const vids = videosFrom(await iaMeta(n.iaId)).filter(v => v.len === 0 || v.len >= 120);
+      const f = n.file ? vids.find(v => v.name === n.file) || vids[0] : vids[0];
+      if (!f) return closePlayer();
+      playIA({ ...n, file: f.name }, n.iaId, f, { ...l, index: l.index + 1 });
+    } catch (e) { closePlayer(); }
+  });
+}
+
+/* ================= Search ================= */
+$("openSearch").addEventListener("click", () => {
+  openPanel("Search");
+  const form = el("form", "searchbox");
+  const input = el("input"); input.type = "search"; input.id = "sq"; input.placeholder = "Film, show, actor or genre…"; input.autocomplete = "off";
+  const go = el("button", "btn play nav", "Search"); go.type = "submit";
+  form.append(input, go);
+  const out = el("div");
+  $("panelBody").replaceChildren(form, out);
+  input.focus();
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) return;
+    busy(out, "Searching…");
+    const words = q.toLowerCase().split(/\s+/);
+    const local = [];
+    for (const row of YT_ROWS) { const h = store.get("row:" + row.id); if (h) local.push(...h.items); }
+    IA_ROWS.forEach(r => r.items.forEach(it => local.push(iaCard(it))));
+    const mine = local.filter(c => { const s = (c.full || c.title) + " " + (c.desc || "") + " " + (c.sub || ""); return words.every(w => s.toLowerCase().includes(w)); });
+    let more = [];
+    try {
+      const safe = q.replace(/[^\p{L}\p{N}\s'.-]/gu, " ").trim();
+      const docs = await iaSearch(`(${safe}) AND ${PD_COLLECTIONS} AND year:[1900 TO 1964] AND mediatype:movies`, 36);
+      more = docs.filter(d => !BAD_ID.test(d.identifier)).map(d => ({ src: "ia", key: "iaq:" + d.identifier, title: d.title || d.identifier, sub: d.year ? String(d.year) : "Classic", thumb: iaThumb(d.identifier), item: { t: d.title || d.identifier, y: d.year || 0, kind: "film", id: d.identifier, min: 600 } }));
+    } catch (err) { /* Archive search optional */ }
+    const all = mine.concat(more.filter(m => !mine.some(x => x.title === m.title)));
+    if (!all.length) return note(out, "Nothing free matches that. Try an actor's name, a genre, or a different spelling.");
+    const grid = el("div", "grid");
+    all.forEach(c => grid.append(tile(c)));
+    out.replaceChildren(grid);
+    grid.querySelector(".tile").focus();
+  });
+});
+
+/* ================= Remote / keyboard ================= */
+function navItems() {
+  const scope = !$("player").hidden ? $("player") : !$("panel").hidden ? $("panel") : document;
+  return [...scope.querySelectorAll(".nav, #sq")].filter(n => n.offsetParent !== null || n.closest("#player"));
+}
+function move(dir) {
+  const items = navItems();
+  const cur = document.activeElement;
+  if (!items.includes(cur)) { if (items[0]) items[0].focus(); return; }
+  const c = cur.getBoundingClientRect(), cx = c.left + c.width / 2, cy = c.top + c.height / 2;
+  let best = null, bestScore = Infinity;
+  for (const n of items) {
+    if (n === cur) continue;
+    const r = n.getBoundingClientRect();
+    if (!r.width) continue;
+    const dx = r.left + r.width / 2 - cx, dy = r.top + r.height / 2 - cy;
+    let main, cross;
+    if (dir === "ArrowRight") { if (dx <= 4) continue; main = dx; cross = Math.abs(dy); }
+    else if (dir === "ArrowLeft") { if (dx >= -4) continue; main = -dx; cross = Math.abs(dy); }
+    else if (dir === "ArrowDown") { if (dy <= 4) continue; main = dy; cross = Math.abs(dx); }
+    else { if (dy >= -4) continue; main = -dy; cross = Math.abs(dx); }
+    const s = main + cross * (dir === "ArrowDown" || dir === "ArrowUp" ? 0.6 : 3);
+    if (s < bestScore) { bestScore = s; best = n; }
+  }
+  if (best) {
+    best.focus({ preventScroll: true });
+    best.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+    if (dir === "ArrowUp" && best.closest(".hero")) window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+document.addEventListener("keydown", e => {
+  const typing = document.activeElement && document.activeElement.id === "sq";
+  const back = e.key === "Escape" || e.key === "GoBack" || e.key === "BrowserBack" || (e.key === "Backspace" && !typing);
+  if (!$("player").hidden) {
+    if (back) { e.preventDefault(); return closePlayer(); }
+    const v = $("stage").querySelector("video");
+    if (v && document.activeElement === v) {
+      if (e.key === "ArrowRight") { e.preventDefault(); v.currentTime = Math.min(v.duration || 1e9, v.currentTime + 10); return; }
+      if (e.key === "ArrowLeft") { e.preventDefault(); v.currentTime = Math.max(0, v.currentTime - 10); return; }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); v.paused ? v.play() : v.pause(); return; }
+      if (e.key === "ArrowUp") { e.preventDefault(); $("playerClose").focus(); return; }
+    }
+    if (ytPlayer && !(document.activeElement && document.activeElement.classList.contains("nav"))) {
+      try {
+        if (e.key === "ArrowRight") { e.preventDefault(); ytPlayer.seekTo(ytPlayer.getCurrentTime() + 10, true); return; }
+        if (e.key === "ArrowLeft") { e.preventDefault(); ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() - 10), true); return; }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ytPlayer.getPlayerState() === 1 ? ytPlayer.pauseVideo() : ytPlayer.playVideo(); return; }
+        if (e.key === "ArrowUp") { e.preventDefault(); $("playerClose").focus(); return; }
+      } catch (x) {}
+    }
+    if (e.key === "ArrowDown" && document.activeElement && document.activeElement.closest(".bar2")) {
+      e.preventDefault();
+      const v2 = $("stage").querySelector("video");
+      if (v2) v2.focus(); else { document.activeElement.blur(); }
+      return;
+    }
+  } else if (!$("panel").hidden && back) { e.preventDefault(); return closePanel(); }
+  if (e.key === "/" && !typing && $("panel").hidden && $("player").hidden) { e.preventDefault(); $("openSearch").click(); return; }
+  if (["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp"].includes(e.key)) {
+    if (typing && (e.key === "ArrowLeft" || e.key === "ArrowRight")) return;
+    e.preventDefault(); move(e.key);
+  }
+});
+
+/* ================= Start ================= */
+renderRows();
+$("heroPlay").focus({ preventScroll: true });
+</script>
+</body>
+</html>
