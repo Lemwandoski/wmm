@@ -338,7 +338,7 @@ const quote = s => '"' + s.replace(/["\\]/g, " ") + '"';
 async function resolveFilm(item) {
   const key = "film:" + item.t + ":" + item.y;
   const hit = store.get(key);
-  if (hit) return hit;
+  if (hit && (!item.id || hit.id === item.id)) return hit;
   const min = item.min || MIN[item.kind];
   const term = item.q || item.t;
   const queries = [];
