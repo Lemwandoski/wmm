@@ -419,7 +419,7 @@ async function channelMovies(ch, min) {
   if (!ids.length) return [];
   const v = await yt("videos", { part: "snippet,contentDetails,status", id: ids.join(","), maxResults: "50" });
   return (v.items || [])
-    .filter(x => x.status && x.status.embeddable !== false && x.snippet.liveBroadcastContent === "none" && isoSecs(x.contentDetails.duration) >= min && modernEnough(x, ch.year))
+    .filter(x => x.status && x.status.embeddable !== false && x.snippet.liveBroadcastContent === "none" && isoSecs(x.contentDetails.duration) >= min && isoSecs(x.contentDetails.duration) <= 4 * 3600 && !/non-?stop|marathon|compilation|24\/7|\b\d+\s+full\s+(romance\s+)?movies?\b|back.to.back/i.test(x.snippet.title) && modernEnough(x, ch.year))
     .map(x => ({
       src: "yt", key: "yt:" + x.id, ytId: x.id,
       title: cleanTitle(x.snippet.title), full: x.snippet.title,
@@ -461,6 +461,7 @@ function episodeTitle(t, show) {
   let x = t.replace(/\s*[|｜].*$/, "").replace(/#\S+/g, "").trim();
   const words = show.t.replace(/[^\p{L}\p{N}' ]/gu, "").trim();
   x = x.replace(new RegExp("^" + words.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*[-–:]*\\s*", "i"), "").replace(/\s*[-–]\s*$/, "").trim();
+  x = x.replace(new RegExp("\\s*[-–—]\\s*" + words.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*$", "i"), "").trim();
   if (x.length < 3) x = t;
   if (x === x.toUpperCase()) x = x.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
   return x;
@@ -486,7 +487,7 @@ async function newEpisodes() {
   return out;
 }
 async function ytRow(row) {
-  const cacheKey = "row3:" + row.id;
+  const cacheKey = "row4:" + row.id;
   const hit = store.get(cacheKey);
   if (hit && Date.now() - hit.at < 6 * 3600e3 && hit.items.length) return hit.items;
   const results = await Promise.allSettled(row.channels.map(ch => channelMovies(ch, row.min)));
@@ -773,7 +774,8 @@ async function openSeries(show, si = 0) {
     const vids = await playlistVideos(pl, show.min, show.filter || null, show.newest ? 1 : 3);
     if ($("panel").hidden) return;
     if (!vids.length) { out.replaceChildren(el("p", "notice", "No episodes in this season can play here. Try another season.")); return; }
-    const eps = vids.map(v => episodeCard(v, show));
+    const ordered = show.newest ? vids : vids.slice().sort((a, b) => (a.date || "").localeCompare(b.date || ""));
+    const eps = ordered.map(v => episodeCard(v, show));
     const step = show.newest ? -1 : 1;
     const grid = el("div", "grid");
     eps.forEach((c, i) => grid.append(tile(c, { onClick: () => { closePanel(); playYT(c, { cards: eps, index: i, step }); } })));
@@ -948,7 +950,7 @@ $("openSearch").addEventListener("click", () => {
     busy(out, "Searching…");
     const words = q.toLowerCase().split(/\s+/);
     const local = SITCOMS.map(showCard);
-    for (const row of YT_ROWS) { const h = store.get("row3:" + row.id); if (h) local.push(...h.items); }
+    for (const row of YT_ROWS) { const h = store.get("row4:" + row.id); if (h) local.push(...h.items); }
     const ne = store.get("row3:newsit"); if (ne) local.push(...ne.items);
     for (const show of SITCOMS) for (const [, pl] of show.seasons) { const h = store.get("pl3:" + pl); if (h) local.push(...h.items.filter(v => v.dur >= show.min).map(v => episodeCard(v, show))); }
     IA_ROWS.forEach(r => r.items.forEach(it => local.push(iaCard(it))));
