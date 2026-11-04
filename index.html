@@ -406,7 +406,15 @@ async function uploadsPlaylist(ch) {
   return pl || null;
 }
 const bestThumb = th => th && (th.maxres || th.standard || th.high || th.medium || th.default || {}).url;
-const cleanTitle = t => t.replace(/\s*[|\-–]\s*(latest|new|trending|full movie|nollywood|nigerian|african)[^|]*$/i, "").replace(/\s{2,}/g, " ").trim() || t;
+function cleanTitle(t) {
+  let x = t.split(/\s*(?:\||\s-\s|-\s|–|—|:\s(?=[A-Z ]{8}))\s*/)[0].replace(/\((?:\s*\d{4}\s*|[^)]*movie[^)]*)\)/ig, "").replace(/\s{2,}/g, " ").trim();
+  if (x.length < 3) x = t;
+  if (x === x.toUpperCase()) x = x.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
+  return x;
+}
+function cleanDesc(d) {
+  return (d || "").split("\n").map(l => l.trim()).find(l => l.length > 40 && !/^#|https?:|subscribe|copyright|©/i.test(l) && (l.match(/#/g) || []).length < 3) || "";
+}
 async function channelMovies(ch, min) {
   const pl = await uploadsPlaylist(ch);
   if (!pl) return [];
@@ -419,13 +427,13 @@ async function channelMovies(ch, min) {
     .map(x => ({
       src: "yt", key: "yt:" + x.id, ytId: x.id,
       title: cleanTitle(x.snippet.title), full: x.snippet.title,
-      desc: (x.snippet.description || "").split("\n").find(l => l.trim().length > 40) || "",
+      desc: cleanDesc(x.snippet.description),
       thumb: bestThumb(x.snippet.thumbnails), dur: isoSecs(x.contentDetails.duration),
       sub: ch.name, date: x.snippet.publishedAt
     }));
 }
 async function ytRow(row) {
-  const cacheKey = "row:" + row.id;
+  const cacheKey = "row2:" + row.id;
   const hit = store.get(cacheKey);
   if (hit && Date.now() - hit.at < 6 * 3600e3 && hit.items.length) return hit.items;
   const results = await Promise.allSettled(row.channels.map(ch => channelMovies(ch, row.min)));
@@ -815,7 +823,7 @@ $("openSearch").addEventListener("click", () => {
     busy(out, "Searching…");
     const words = q.toLowerCase().split(/\s+/);
     const local = [];
-    for (const row of YT_ROWS) { const h = store.get("row:" + row.id); if (h) local.push(...h.items); }
+    for (const row of YT_ROWS) { const h = store.get("row2:" + row.id); if (h) local.push(...h.items); }
     IA_ROWS.forEach(r => r.items.forEach(it => local.push(iaCard(it))));
     const mine = local.filter(c => { const s = (c.full || c.title) + " " + (c.desc || "") + " " + (c.sub || ""); return words.every(w => s.toLowerCase().includes(w)); });
     let more = [];
