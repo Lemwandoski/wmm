@@ -183,15 +183,15 @@ const YT_ROWS = [
 const IA_ROWS = [
   { title: "Blender Studio shorts", sub: "Animated films, free for everyone", items: [
     { t: "Charge", y: 2022, kind: "short", id: "charge-blender-open-movie-1608p", x: "blender", b: "An old man breaks into a fortified energy plant to save his granddaughter." },
-    { t: "Sprite Fight", y: 2021, kind: "short", id: "SpriteFight", x: "blender", b: "Forest sprites wage a petty, hilarious war over a picnic spot." },
+    { t: "Sprite Fright", y: 2021, kind: "short", yt: "_cMxraX_5RE", dur: 630, b: "Rowdy teens on a forest trip meet sprites who are far less cute than they look." },
     { t: "Coffee Run", y: 2020, kind: "short", id: "coffee-run", x: "blender", b: "A caffeine-fuelled sprint through one woman's worst morning." },
     { t: "Spring", y: 2019, kind: "short", id: "springopenmovie", x: "blender", b: "A shepherd girl and her dog face ancient spirits to bring back spring." },
     { t: "Agent 327: Operation Barbershop", y: 2017, kind: "short", id: "agent-327-operation-barbershop", x: "blender", b: "A secret agent's undercover haircut goes very wrong." },
     { t: "Cosmos Laundromat", y: 2015, kind: "short", id: "cosmos-laundromat", x: "blender", b: "A desperate sheep is offered a new life by a mysterious salesman." },
-    { t: "Tears of Steel", y: 2012, kind: "short", x: "blender", b: "Robots overrun Amsterdam in this live-action effects short." },
-    { t: "Sintel", y: 2010, kind: "short", id: "Sintel", x: "blender", b: "A girl searches for the baby dragon she raised." },
-    { t: "Big Buck Bunny", y: 2008, kind: "short", x: "blender", b: "A giant rabbit gets revenge on three bullies." },
-    { t: "Elephants Dream", y: 2006, kind: "short", x: "blender", b: "The very first Blender film: two men inside a strange machine world." }
+    { t: "Tears of Steel", y: 2012, kind: "short", id: "tears-of-steel_202601", x: "blender", b: "Robots overrun Amsterdam in this live-action effects short." },
+    { t: "Sintel", y: 2010, kind: "short", id: "sintel_202207", x: "blender", b: "A girl searches for the baby dragon she raised." },
+    { t: "Big Buck Bunny", y: 2008, kind: "short", id: "BigBuckBunny_310", x: "blender", b: "A giant rabbit gets revenge on three bullies." },
+    { t: "Elephants Dream", y: 2006, kind: "short", id: "ElephantsDream_628", x: "blender", b: "The very first Blender film: two men inside a strange machine world." }
   ]},
   { title: "Classic sitcoms", sub: "Full episodes", items: [
     { t: "The Beverly Hillbillies", y: 1962, kind: "show", b: "A mountain family strikes oil and moves to Beverly Hills." },
@@ -463,6 +463,7 @@ function toggleList(card) {
 
 /* ================= Cards & rows ================= */
 function iaCard(item) {
+  if (item.yt) return { src: "yt", key: "yt:" + item.yt, ytId: item.yt, title: item.t, desc: item.b, sub: item.y + " · Short", dur: item.dur, thumb: "https://i.ytimg.com/vi/" + item.yt + "/maxresdefault.jpg" };
   return { src: "ia", key: "ia:" + item.t + ":" + item.y, item, title: item.t, desc: item.b, kind: item.kind, sub: String(item.y) + (item.kind === "show" ? " · Episodes" : item.kind === "short" ? " · Short" : ""), thumb: item.id ? iaThumb(item.id) : (store.get("film:" + item.t + ":" + item.y) || {}).id ? iaThumb(store.get("film:" + item.t + ":" + item.y).id) : null };
 }
 const fmtDur = s => s >= 3600 ? Math.floor(s / 3600) + "h " + Math.round((s % 3600) / 60) + "m" : Math.round(s / 60) + " min";
