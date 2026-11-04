@@ -210,14 +210,9 @@ const YT_ROWS = [
     { handle: "@NollyPlusTV", name: "Nolly Plus TV", year: "loose" },
     { handle: "@ChizzyAlichiTV", name: "Chizzy Alichi TV", year: "loose" }
   ]},
-  { id: "hwood", title: "Hollywood movies", sub: "Lionsgate, Popcornflix and Movie Central", min: 3600, channels: [
-    { cid: "UCJ6nMHaJPZvsJ-HmUmj1SeA", name: "Lionsgate", year: "strict" },
+  { id: "hwood", title: "Hollywood movies", sub: "From Popcornflix and Movie Central", min: 3600, channels: [
     { cid: "UCVFYikepF-avelvuIaQ_lHA", name: "Popcornflix", year: "strict" },
     { cid: "UCGBzBkV-MinlBvHBzZawfLQ", name: "Movie Central", year: "loose" }
-  ]},
-  { id: "romance", title: "Romance movies", sub: "Hallmark and Romance Movie Central", min: 3600, channels: [
-    { cid: "UC5fhIo2urh_iQff0gAhNMeQ", name: "Hallmark Movies", year: "loose" },
-    { cid: "UC_hYEii6T191kKGx-4YljGQ", name: "Romance Movie Central", year: "loose" }
   ]}
 ];
 
@@ -511,7 +506,7 @@ async function newEpisodes() {
   return out;
 }
 async function ytRow(row) {
-  const cacheKey = "row6:" + row.id;
+  const cacheKey = "row7:" + row.id;
   const hit = store.get(cacheKey);
   if (hit && Date.now() - hit.at < 6 * 3600e3 && hit.items.length) return hit.items;
   const results = await Promise.allSettled(row.channels.map(ch => channelMovies(ch, row.min)));
@@ -996,7 +991,7 @@ $("openSearch").addEventListener("click", () => {
     busy(out, "Searching…");
     const words = q.toLowerCase().split(/\s+/);
     const local = SITCOMS.map(showCard);
-    for (const row of YT_ROWS) { const h = store.get("row6:" + row.id); if (h) local.push(...h.items); }
+    for (const row of YT_ROWS) { const h = store.get("row7:" + row.id); if (h) local.push(...h.items); }
     const ne = store.get("row3:newsit"); if (ne) local.push(...ne.items);
     for (const show of SITCOMS) for (const [, pl] of show.seasons) { const h = store.get("pl3:" + pl); if (h) local.push(...h.items.filter(v => v.dur >= show.min).map(v => episodeCard(v, show))); }
     IA_ROWS.forEach(r => r.items.forEach(it => local.push(iaCard(it))));
