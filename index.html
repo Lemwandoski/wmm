@@ -130,7 +130,7 @@ kbd { font-family: var(--body); font-weight: 700; background: var(--surface); bo
 <main class="gut" id="rows"></main>
 
 <footer class="gut">
-  <p>Everything on Rose Reel is free and legal: sitcoms and movies from 2000 onwards, posted by the shows' and studios' own official YouTube channels, plus films their makers released for everyone (from the Internet Archive). YouTube films include YouTube's ads.</p>
+  <p>Everything on Rose Reel is free and legal: sitcoms, sport and movies from 2000 onwards, posted by the shows' and studios' own official YouTube channels, plus films their makers released for everyone (from the Internet Archive). YouTube films include YouTube's ads.</p>
   <p>Remote: <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>OK</kbd> play · <kbd>Back</kbd> close · in the player <kbd>OK</kbd> pause, <kbd>←</kbd><kbd>→</kbd> skip 10s.</p>
 </footer>
 
@@ -179,10 +179,36 @@ const NEW_EPISODE_SOURCES = [
   { show: "hullabaloo", pl: "PLvj2ig4-s8wgU7521L5NgWZmRxWl2WYcX" }
 ];
 
+/* Free services that only play in their own app or site. These tiles open them in a new tab. */
+const OUTSIDE = [
+  { t: "DAZN", b: "A free account gets some live matches every week: LaLiga, Serie A, boxing and more.", by: "Live sport · free sign-up", url: "https://www.dazn.com/" },
+  { t: "FIFA+", b: "Free live African qualifiers, women's football and match replays.", by: "Live football", url: "https://www.plus.fifa.com/" },
+  { t: "Match finder", b: "Today's football fixtures and which channel or stream shows each game.", by: "Fixtures guide", url: "https://www.livesoccertv.com/" },
+  { t: "Plex", b: "Thousands of free films and series, plus live TV channels. Works in Kenya.", by: "Free with ads", url: "https://watch.plex.tv/" },
+  { t: "YouTube Movies", b: "YouTube's own section of free films with ads.", by: "Free with ads", url: "https://www.youtube.com/feed/storefront" },
+  { t: "AfroLandTV", b: "Free African and Black-diaspora films and series.", by: "Free with ads", url: "https://www.afrolandtv.com/" },
+  { t: "Pluto TV", b: "Channel-surfing live TV and on-demand films. May not load in Kenya.", by: "Free with ads", url: "https://pluto.tv/" }
+];
+
 /* Movie rows: official channels that post full, free films. Only films from 2000 on are kept.
    year "strict": keep only films whose title or description names a year from 2000 on.
    year "loose": drop any film that names a year before 2000 (for channels that only post recent films). */
 const YT_ROWS = [
+  { id: "football", title: "Football", sub: "Highlights from the Premier League, LaLiga, Serie A, Bundesliga and UEFA", min: 150, channels: [
+    { cid: "UCG5qGWdu8nIRZqJ_GgDwQ-w", name: "Premier League", year: "loose" },
+    { cid: "UCTv-XvfzLX3i4IGWAm4sbmA", name: "LaLiga", year: "loose" },
+    { cid: "UCBJeMCIeLQos7wacox4hmLQ", name: "Serie A", year: "loose" },
+    { cid: "UC6UL29enLNe4mqwTfAyeNuw", name: "Bundesliga", year: "loose" },
+    { cid: "UCyGa1YEx9ST66rYrJTGIKOw", name: "UEFA", year: "loose" }
+  ]},
+  { id: "fullmatch", title: "Full matches", sub: "Complete games from FIFA's official channel", min: 1800, channels: [
+    { cid: "UCpcTrCXblq78GZrTUTLWeBw", name: "FIFA", year: "loose" }
+  ]},
+  { id: "moresport", title: "NBA, UFC and athletics", sub: "Official highlights and big moments", min: 150, channels: [
+    { cid: "UCWJ2lWNubArHWmf3FIHbfcQ", name: "NBA", year: "loose" },
+    { cid: "UCvgfXK4nTYKudb0rFR6noLA", name: "UFC", year: "loose" },
+    { cid: "UCQk7fWv15ChjMJLCRVmtApw", name: "World Athletics", year: "loose" }
+  ]},
   { id: "nolly", title: "New Nollywood", sub: "Fresh full movies from official producers", min: 2400, channels: [
     { handle: "@IBAKATV", name: "IBAKATV", year: "loose" },
     { handle: "@RuthKadiri247", name: "Ruth Kadiri 247", year: "loose" },
@@ -487,7 +513,7 @@ async function newEpisodes() {
   return out;
 }
 async function ytRow(row) {
-  const cacheKey = "row4:" + row.id;
+  const cacheKey = "row5:" + row.id;
   const hit = store.get(cacheKey);
   if (hit && Date.now() - hit.at < 6 * 3600e3 && hit.items.length) return hit.items;
   const results = await Promise.allSettled(row.channels.map(ch => channelMovies(ch, row.min)));
@@ -535,6 +561,9 @@ function toggleList(card) {
 }
 
 /* ================= Cards & rows ================= */
+function linkCard(o) {
+  return { src: "link", key: "link:" + o.t, title: o.t, desc: o.b, sub: o.by + " · opens in a new tab", url: o.url, thumb: null };
+}
 function showCard(show) {
   const th = store.get("showthumb:" + show.id);
   return { src: "show", key: "show:" + show.id, showId: show.id, title: show.t, desc: show.b, sub: show.by, thumb: th || null };
@@ -672,6 +701,9 @@ function renderRows() {
     n.sc.replaceWith(el("p", "notice", "Recent Nollywood and Hollywood films appear here once the YouTube key is added."));
     main.append(n.sec);
   }
+  const ext = rowShell("outside", "More free services", "Live sport and free streaming apps, opened in a new tab");
+  OUTSIDE.forEach(o => ext.sc.append(tile(linkCard(o), { badge: "Opens app" })));
+  main.append(ext.sec);
   IA_ROWS.forEach((r, i) => {
     const { sec, sc } = rowShell("ia" + i, r.title, r.sub);
     r.items.forEach(it => sc.append(tile(iaCard(it))));
@@ -720,6 +752,12 @@ function note(container, text, link) {
 }
 
 async function openCard(card) {
+  if (card.src === "link") {
+    const a = document.createElement("a");
+    a.href = card.url; a.target = "_blank"; a.rel = "noopener";
+    document.body.append(a); a.click(); a.remove();
+    return;
+  }
   if (card.src === "show") return openSeries(SITCOMS.find(x => x.id === card.showId));
   if (card.src === "yt") return playYT(card);
   if (card.iaId && card.file) return playIA(card, card.iaId, { name: card.file });
@@ -950,7 +988,7 @@ $("openSearch").addEventListener("click", () => {
     busy(out, "Searching…");
     const words = q.toLowerCase().split(/\s+/);
     const local = SITCOMS.map(showCard);
-    for (const row of YT_ROWS) { const h = store.get("row4:" + row.id); if (h) local.push(...h.items); }
+    for (const row of YT_ROWS) { const h = store.get("row5:" + row.id); if (h) local.push(...h.items); }
     const ne = store.get("row3:newsit"); if (ne) local.push(...ne.items);
     for (const show of SITCOMS) for (const [, pl] of show.seasons) { const h = store.get("pl3:" + pl); if (h) local.push(...h.items.filter(v => v.dur >= show.min).map(v => episodeCard(v, show))); }
     IA_ROWS.forEach(r => r.items.forEach(it => local.push(iaCard(it))));
