@@ -326,10 +326,21 @@ function videosFrom(meta) {
   for (const [key, g] of groups) {
     g.sort((a, b) => rank(b) - rank(a));
     const len = Math.max(...g.map(f => secs(f.length)), secs((files.find(f => f.name === key) || {}).length));
-    out.push({ name: g[0].name, len, label: (g[0].title || key).replace(/\.[a-z0-9]+$/i, "").replace(/_+/g, " ") });
+    out.push({ name: g[0].name, rank: rank(g[0]), len, label: (g[0].title || key).replace(/\.[a-z0-9]+$/i, "").replace(/_+/g, " ") });
   }
   out.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
   return out;
+}
+/* Several files of nearly the same length are the same film in different formats: keep the best one. */
+function collapseAlternates(vids) {
+  if (vids.length < 2) return vids;
+  const max = Math.max(...vids.map(v => v.len));
+  if (!max) return [vids.slice().sort((a, b) => b.rank - a.rank)[0]];
+  const same = vids.filter(v => v.len >= max * 0.9);
+  if (same.length === vids.length || same.length > 1 && vids.filter(v => v.len < max * 0.9).every(v => v.len < 600)) {
+    return [same.slice().sort((a, b) => (b.rank - a.rank) || (b.len - a.len))[0]];
+  }
+  return vids;
 }
 const iaFile = (id, name) => "https://archive.org/download/" + encodeURIComponent(id) + "/" + name.split("/").map(encodeURIComponent).join("/");
 const iaThumb = id => "https://archive.org/services/img/" + encodeURIComponent(id);
@@ -633,8 +644,9 @@ async function openCard(card) {
   }
 }
 async function openItemVideos(card, id, min, list) {
-  const vids = videosFrom(await iaMeta(id)).filter(v => v.len === 0 || v.len >= Math.min(min, 120));
+  let vids = videosFrom(await iaMeta(id)).filter(v => v.len === 0 || v.len >= Math.min(min, 120));
   if (!vids.length) return note($("panelBody"), "No playable video in this upload. Try another title.");
+  vids = collapseAlternates(vids);
   if (vids.length === 1) { closePanel(); return playIA({ ...card, iaId: id, file: vids[0].name, thumb: card.thumb || iaThumb(id) }, id, vids[0], list); }
   const grid = el("div", "grid");
   const parts = vids.map((v, i) => ({ ...card, key: card.key + ":" + i, iaId: id, file: v.name, title: card.title + " · " + v.label, thumb: iaThumb(id), dur: v.len }));
