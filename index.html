@@ -194,15 +194,10 @@ const OUTSIDE = [
    year "strict": keep only films whose title or description names a year from 2000 on.
    year "loose": drop any film that names a year before 2000 (for channels that only post recent films). */
 const YT_ROWS = [
-  { id: "football", title: "Football", sub: "Highlights from the Premier League, LaLiga, Serie A, Bundesliga and UEFA", min: 150, channels: [
+  { id: "football", title: "Football", sub: "Highlights from the Premier League, Serie A and Bundesliga", min: 150, channels: [
     { cid: "UCG5qGWdu8nIRZqJ_GgDwQ-w", name: "Premier League", year: "loose" },
-    { cid: "UCTv-XvfzLX3i4IGWAm4sbmA", name: "LaLiga", year: "loose" },
     { cid: "UCBJeMCIeLQos7wacox4hmLQ", name: "Serie A", year: "loose" },
-    { cid: "UC6UL29enLNe4mqwTfAyeNuw", name: "Bundesliga", year: "loose" },
-    { cid: "UCyGa1YEx9ST66rYrJTGIKOw", name: "UEFA", year: "loose" }
-  ]},
-  { id: "fullmatch", title: "Full matches", sub: "Complete games from FIFA's official channel", min: 1800, channels: [
-    { cid: "UCpcTrCXblq78GZrTUTLWeBw", name: "FIFA", year: "loose" }
+    { cid: "UC6UL29enLNe4mqwTfAyeNuw", name: "Bundesliga", year: "loose" }
   ]},
   { id: "moresport", title: "NBA, UFC and athletics", sub: "Official highlights and big moments", min: 150, channels: [
     { cid: "UCWJ2lWNubArHWmf3FIHbfcQ", name: "NBA", year: "loose" },
@@ -416,7 +411,10 @@ async function uploadsPlaylist(ch) {
 }
 const bestThumb = th => th && (th.maxres || th.standard || th.high || th.medium || th.default || {}).url;
 function cleanTitle(t) {
-  let x = t.split(/\s*(?:\||\s-\s|-\s|–|—|:\s(?=[A-Z ]{8}))\s*/)[0].replace(/\((?:\s*\d{4}\s*|[^)]*movie[^)]*)\)/ig, "").replace(/\s{2,}/g, " ").trim();
+  const parts = t.split(/\s*(?:\||\s-\s|-\s|–|—|:\s(?=[A-Z ]{8}))\s*/).filter(Boolean);
+  let first = parts[0] || t;
+  if (/^(full match|full movie|highlights|full episode|extended highlights)$/i.test(first.trim()) && parts[1]) first = parts[1];
+  let x = first.replace(/\((?:\s*\d{4}\s*|[^)]*movie[^)]*)\)/ig, "").replace(/\s{2,}/g, " ").trim();
   if (x.length < 3) x = t;
   if (x === x.toUpperCase()) x = x.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
   return x;
@@ -513,7 +511,7 @@ async function newEpisodes() {
   return out;
 }
 async function ytRow(row) {
-  const cacheKey = "row5:" + row.id;
+  const cacheKey = "row6:" + row.id;
   const hit = store.get(cacheKey);
   if (hit && Date.now() - hit.at < 6 * 3600e3 && hit.items.length) return hit.items;
   const results = await Promise.allSettled(row.channels.map(ch => channelMovies(ch, row.min)));
@@ -541,6 +539,9 @@ function loadYTApi() {
 }
 
 /* ================= Library state ================= */
+const blocked = () => store.get("blocked", []);
+function markBlocked(id) { const b = blocked(); if (!b.includes(id)) { b.push(id); store.set("blocked", b.slice(-500)); } }
+const notBlocked = c => !(c.ytId && blocked().includes(c.ytId));
 const progress = () => store.get("progress", {});
 function saveProgress(card, t, d) {
   if (!card || !d || t < 15) return;
@@ -681,7 +682,7 @@ function renderRows() {
     newEpisodes().then(items => {
       ne.sc.replaceChildren();
       if (!items.length) { ne.sec.hidden = true; return; }
-      items.forEach((c, i) => ne.sc.append(tile(c, { badge: i < 4 ? "New" : null })));
+      items.filter(notBlocked).forEach((c, i) => ne.sc.append(tile(c, { badge: i < 4 ? "New" : null })));
       heroLocked = true;
       setHero(items[0], "New episode · " + items[0].sub);
     }).catch(err => ne.sc.replaceChildren(el("p", "notice", rowError(err))));
@@ -692,7 +693,7 @@ function renderRows() {
       ytRow(row).then(items => {
         sc.replaceChildren();
         if (!items.length) { sec.hidden = true; return; }
-        items.forEach((c, i) => sc.append(tile(c, { badge: row.id === "nolly" && i < 3 ? "New" : null })));
+        items.filter(notBlocked).forEach((c, i) => sc.append(tile(c, { badge: row.id === "nolly" && i < 3 ? "New" : null })));
         if (!heroLocked && heroFromIA) { heroFromIA = false; setHero(items[0], row.title); }
       }).catch(err => sc.replaceChildren(el("p", "notice", rowError(err))));
     }
@@ -813,7 +814,7 @@ async function openSeries(show, si = 0) {
     if ($("panel").hidden) return;
     if (!vids.length) { out.replaceChildren(el("p", "notice", "No episodes in this season can play here. Try another season.")); return; }
     const ordered = show.newest ? vids : vids.slice().sort((a, b) => (a.date || "").localeCompare(b.date || ""));
-    const eps = ordered.map(v => episodeCard(v, show));
+    const eps = ordered.map(v => episodeCard(v, show)).filter(notBlocked);
     const step = show.newest ? -1 : 1;
     const grid = el("div", "grid");
     eps.forEach((c, i) => grid.append(tile(c, { onClick: () => { closePanel(); playYT(c, { cards: eps, index: i, step }); } })));
@@ -935,9 +936,16 @@ async function playYT(card, list) {
         onReady: e => { e.target.playVideo(); try { e.target.getIframe().focus(); } catch (x) {} },
         onStateChange: e => { if (e.data === 0) { saveProgress(card, 1, 1); next(); } },
         onError: e => {
-          const blocked = e.data === 101 || e.data === 150 || e.data === 153;
-          stageNote(blocked ? "The owner of this film only allows it to play on YouTube." : "This video won't play right now. Try another one.",
-            blocked ? { label: "Watch on YouTube", href: "https://www.youtube.com/watch?v=" + encodeURIComponent(card.ytId) } : null);
+          const isBlocked = e.data === 101 || e.data === 150 || e.data === 153 || e.data === 100;
+          if (isBlocked) markBlocked(card.ytId);
+          const l = current && current.list;
+          const step = (l && l.step) || 1;
+          if (isBlocked && l && l.cards[l.index + step]) {
+            stageNote("This one can't play inside Rose Reel. Skipping to the next…");
+            setTimeout(() => { if (current && current.card === card) playYT(l.cards[l.index + step], { ...l, index: l.index + step }); }, 1500);
+            return;
+          }
+          stageNote(isBlocked ? "This one can't play inside Rose Reel, so it's been hidden. Press Back and pick another." : "This video won't play right now. Try another one.");
         }
       }
     });
@@ -988,7 +996,7 @@ $("openSearch").addEventListener("click", () => {
     busy(out, "Searching…");
     const words = q.toLowerCase().split(/\s+/);
     const local = SITCOMS.map(showCard);
-    for (const row of YT_ROWS) { const h = store.get("row5:" + row.id); if (h) local.push(...h.items); }
+    for (const row of YT_ROWS) { const h = store.get("row6:" + row.id); if (h) local.push(...h.items); }
     const ne = store.get("row3:newsit"); if (ne) local.push(...ne.items);
     for (const show of SITCOMS) for (const [, pl] of show.seasons) { const h = store.get("pl3:" + pl); if (h) local.push(...h.items.filter(v => v.dur >= show.min).map(v => episodeCard(v, show))); }
     IA_ROWS.forEach(r => r.items.forEach(it => local.push(iaCard(it))));
