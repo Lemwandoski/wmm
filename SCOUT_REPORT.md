@@ -1,5 +1,212 @@
 # Rose Reel scout report
 
-The weekly scout hasn't run yet. It runs every Monday at 07:17 Nairobi time, and you can start it any time from the **Actions** tab (Weekly catalogue scout → Run workflow).
+Last run: 2026-11-05 09:04 UTC · YouTube quota used: 2362 of 10,000
 
-It needs a repository secret named `YT_SCOUT_KEY`: a YouTube Data API v3 key with no website restriction (API restriction: YouTube Data API v3 only), ideally from its own Google Cloud project so it has its own daily allowance.
+## Added to the app this week: new seasons
+
+- Big Boys: All episodes
+- The Office: All episodes
+- My Mum, Your Dad: Series 2
+- The Voice UK: Series 8
+- Dancing On Ice 2025: All episodes
+- Mr Bean: The Animated Series: Season 3
+- Mr Bean: The Animated Series: Series 1
+- Mr Bean: The Animated Series: Series 2
+- Mr Bean Cartoon Full Episodes: All episodes
+- Funniest Moments: All episodes
+- Hullabaloo Estate: Season 7
+- Njoro wa Uba: Season 6
+- Hullabaloo Estate: Season 4
+- Njoro wa Uba: Season 4
+- Njoro wa Uba: All episodes
+- Njoro wa Uba: Season 3
+- Magic Magic East: Season 2
+- Njoro wa Uba: Season 2
+- Njoro wa Uba: Season 1
+- Magic Magic East: Season 1
+- AIYETORO TOWN SEASON: Season 2
+- INDUSTREET: Season 2
+- House helps: Series 1
+- INDUSTREET: Season 1
+- Visa On Arrival: Season 9
+- Visa On Arrival: Season 8
+- Visa On Arrival: All episodes
+- Shade Corner: Season 7
+- Shade Corner: All episodes
+- Shade Corner: All episodes
+- OFF THE MENU: Season 3
+- Shade Corner: Season 5
+- Shade Corner: All episodes
+- Streets of Lagos: All episodes
+- The Whole Truth: All episodes
+- The Whole Truth: All episodes
+- Shade Corner: All episodes
+- Shade Corner: All episodes
+- Shade Corner: All episodes
+- Extra Love: All episodes
+- Game On: All episodes
+- NdaniRealTalk: Season 3
+- Rumour Has It: Season 2
+- Real Talk: Season 2
+- The Juice: Season 3
+- Rumour Has It: All episodes
+- Real Talk: All episodes
+- The Juice: Season 1
+
+## Added to the app this week: new shows from trusted channels
+
+- Break Clause (Channel 4 Comedy)
+- Mitchell and Webb Are Not Helping (Channel 4 Comedy)
+- Make That Movie (Channel 4 Comedy)
+- The Box (ITV)
+- The Voice UK (ITV)
+- The Chase Around The World (ITV)
+- Ainsley's World Cup Flavours (ITV)
+- Soccer Aid for UNICEF 2026 (ITV)
+- Nobody's Fool (ITV)
+- Bradley & Barney Walsh: Breaking Dad (ITV)
+- The Neighbourhood (ITV)
+- The Floor (ITV)
+- The Martin Lewis Money Show (ITV)
+- The Great Escapers (ITV)
+- Sorry, I Didn't Know (ITV)
+- Bullseye (ITV)
+- The Jonathan Ross Show: Special Guests (ITV)
+- The Fortune Hotel (ITV)
+- Shark! Celebrity Infested Waters (ITV)
+- Piglets (ITV)
+- Changing Ends (ITV)
+- Transaction - NEW Comedy! (ITV)
+- Noel Edmonds' Kiwi Adventure (ITV)
+- Soccer Aid for UNICEF 2025 (ITV)
+- C*A*U*G*H*T (ITV)
+- The Genius Game (ITV)
+- The Assembly (ITV)
+- Celebrity Big Brother 2025 (ITV)
+- 99 To Beat - Who's The Best At Silly Challenges?! (ITV)
+- Romesh Ranganathan's Parents' Evening (ITV)
+- M&S: Dress The Nation (ITV)
+- Thunderbirds: 60 Years of International Rescue! (ITV)
+- Billy Connolly: Journey to the Edge of the World (ITV)
+- 7-63 Up (ITV)
+- Dancing On Ice 2025 (ITV)
+- Tom Kerridge Cooks Britain (ITV)
+- The Masked Singer: AfterMask (ITV)
+- Champions: Full Gallop (ITV)
+- Laugh Out Loud with: G'wed (ITV)
+- Dancing on Ice 2024 (ITV)
+- I'm A Celebrity...Get Me Out Of Here! 2024 Full Episodes (ITV)
+- Vera - From The Very Beginning! (ITV)
+- Peter Kay Stars In: Cradle To Grave (ITV)
+- Olivia Marries Her Match (ITV)
+- I'm A Celebrity... Unpacked 2024 (ITV)
+- Best Trial Moments: I'm A Celebrity...Get Me Out Of Here! 2024 (ITV)
+- Cooking With The Stars (ITV)
+- Ferne McCann: My Family & Me (ITV)
+- Catch Up On The Soaps! (ITV)
+- The Chase (ITV)
+- For The Love of Dogs with Alison Hammond (ITV)
+- Big Zuu' (ITV)
+- Coronation Street Omnibus (ITV)
+- Emmerdale Omnibus (ITV)
+- My Mum, Your Dad (ITV)
+- An Audience With (ITV)
+- Beat The Chasers (ITV)
+- Everyday Bean (Mr Bean)
+- Funniest Moments (Mr Bean)
+- All Videos (Mr Bean)
+- The Adventures of Mr Bean (Mr Bean)
+- Mr Bean Cartoon Full Episodes (Mr Bean)
+- Special Days 😍 (Mr Bean)
+- Thanksgiving Bean! 🦃 (Mr Bean)
+- Teddy Moments! 🐻 (Mr Bean)
+- Best Bean Moments! 🌟 (Mr Bean)
+- All Things Bean (Mr Bean)
+- Full Episodes Widescreen 🤪 (Mr Bean)
+- Summer Cartoons (Mr Bean)
+- Bean's Classic Moments 👏🏽 (Mr Bean)
+- Mr. Bean Funnies (Mr Bean)
+- Best Cartoon Moments! (Mr Bean)
+- Mr Bean Classic Episodes ⭐ (Mr Bean)
+- Black Friday Bean 🛒💥 (Mr Bean)
+- Happy Hallo-bean! (Mr Bean)
+- Top Toons (Mr Bean)
+- Busy Bean (Mr Bean)
+- Shopping with Mr Bean 🛒 (Mr Bean)
+- Christmas with Bean 🎅🏽 (Mr Bean)
+- Mr Bean Animated Full Episodes 🥰 (Mr Bean)
+- The Official Mr Bean Playlist (Mr Bean)
+- Njoro wa Uba (Maisha Magic East)
+- Maisha Magic (Maisha Magic East)
+- Magic Magic East (Maisha Magic East)
+- Must Watch Full Episodes (Maisha Magic East)
+- Real Househelps Marathon Ep 229-234 (The Real Househelps of Kawangware)
+- AIYETORO TOWN SEASON (FAAN TV)
+- GROUND ZERO REALITY SHOW (FAAN TV)
+- Jenifa The Politician (FAAN TV)
+- House helps (FAAN TV)
+- Jenifa On Lockdown (FAAN TV)
+- INDUSTREET (FAAN TV)
+- The Return Of Jenifa (FAAN TV)
+- Flashback Movies (FAAN TV)
+- HEARSAY Videos (FAAN TV)
+- Nollywood Movies (FAAN TV)
+- Shade Corner (Accelerate TV)
+- Clinically Speaking (Accelerate TV)
+- Streets of Lagos (Accelerate TV)
+- LISTEN With Osi (Accelerate TV)
+- Accelerate Movies (Accelerate TV)
+- OFF THE MENU (Accelerate TV)
+- Big Book of Lies - Book 1: Unbrided (Accelerate TV)
+- Your City, My View (Accelerate TV)
+- The Whole Truth (Accelerate TV)
+- The Big Tech Show (Accelerate TV)
+- Third Avenue (Accelerate TV)
+- Accelerate Filmmaker Project 2020 (Accelerate TV)
+- Access The Stars (Accelerate TV)
+- Brotherhood (Accelerate TV)
+- Accelerate Fashion Talks (Accelerate TV)
+- King Women (Accelerate TV)
+- Extra Love (NdaniTV)
+- The Middle (NdaniTV)
+- CLOSURE (NdaniTV)
+- How I Got Broke (NdaniTV)
+- INVESTED (NdaniTV)
+- Bottomline (NdaniTV)
+- Top 5 Anything (NdaniTV)
+- Banking on Love (NdaniTV)
+- Schooled (NdaniTV)
+- Game On (NdaniTV)
+- Afro City (NdaniTV)
+- Love Like This (NdaniTV)
+- Real Talk (NdaniTV)
+- Rumour Has It (NdaniTV)
+- Afrocity (NdaniTV)
+- NdaniRealTalk (NdaniTV)
+- The Juice (NdaniTV)
+- Analyse This (NdaniTV)
+- Lagos Big Boy (NdaniTV)
+- GTBankFoodDrink Fair (NdaniTV)
+- African Dream (NdaniTV)
+- The New Africa (NdaniTV)
+- Gidi Up (NdaniTV)
+- The Rise of The Super Eagles (NdaniTV)
+
+## Removed: playlists that stopped working
+
+Everything still works.
+
+## Waiting for your approval
+
+These look like full-episode series from channels the scout doesn't know yet. They are not in the app. To approve one, add its channel to `trusted` in `scripts/scout-config.json` (or ask Claude to).
+
+- **The Smart Money Woman Nollywood TV Series  | FULL EPISODES  | SEASON 1 &amp; 2** by Azuwa Studios (fka Smart Money Arese) (101,000 subscribers) · https://www.youtube.com/playlist?list=PL9amPag64gRF6DjfivsK21TCWl0D4XUrP
+- **South Africa – Season 6 Full Episodes | Survivor Official** by Survivor Official (159,000 subscribers) · https://www.youtube.com/playlist?list=PLoNzUjV3m1jpaFZElzCTBlbo-hzRJ_zSY
+- **South Africa – Season 9 Full Episodes | Survivor Official** by Survivor Official (159,000 subscribers) · https://www.youtube.com/playlist?list=PLoNzUjV3m1joQDntNN2F6C6rH1yMfK2Bs
+- **South Africa – Season 7 Full Episodes | Survivor Official** by Survivor Official (159,000 subscribers) · https://www.youtube.com/playlist?list=PLoNzUjV3m1joKRu-8XR_FtjBImids-CiD
+- **Wife Swap South Africa | Season 1 | Full Episodes** by Wife Swap World (108,000 subscribers) · https://www.youtube.com/playlist?list=PLhq-fM0UsodToA-7tx0_0QiGBVfxxk1A_
+- **Hello Mr Right KENYA** by St Rembo TV (443,000 subscribers) · https://www.youtube.com/playlist?list=PLOD2N55c1mgU3rVds9x42FZeJzYUZC3Wm
+- **Comedy Circus Season 1 | Full Episodes** by SET India (190,000,000 subscribers) · https://www.youtube.com/playlist?list=PLzufeTFnhupzq3_5mH9C1wU4g6Qt8voQc
+- **Three&#39;s Company  | Full Episodes | Comedy American Sitcom** by BD- Fish Catching Zone  (65,300 subscribers) · https://www.youtube.com/playlist?list=PLA8fNJzQe7Igsr5EP2o2WgnNvMM1rwWQi
+
+_775 playlists were skipped as clips, trailers, old (pre-2000) or not full episodes._
