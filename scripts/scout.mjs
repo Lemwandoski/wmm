@@ -35,7 +35,9 @@ export function seriesName(title, channelName) {
 
 export function existingFromIndex(html) {
   const playlists = new Set([...html.matchAll(/"((?:PL|UU)[A-Za-z0-9_-]{10,})"/g)].map(m => m[1]));
-  const shows = [...html.matchAll(/\bid: "(\w+)"[^\n]*?\bt: "([^"]+)"/g)].map(m => ({ id: m[1], t: m[2] }));
+  const shows = [...html.matchAll(/^.*\bid: "(\w+)"[^\n]*?\bt: "([^"]+)".*$/gm)].map(m => ({
+    id: m[1], t: m[2], nums: new Set([...m[0].matchAll(/\["(?:Season|Series) (\d+)"/g)].map(x => +x[1]))
+  }));
   return { playlists, shows };
 }
 
@@ -55,11 +57,16 @@ export async function scout({ key, fetchImpl = fetch, now = new Date(), files = 
   try { cat = JSON.parse(files.catalogue ?? await readFile(path.join(ROOT, "catalogue.json"), "utf8")); } catch { cat = {}; }
   cat = { sitcoms: [], seasons: {}, retired: [], pending: [], ...cat };
   const { playlists: builtIn, shows: builtInShows } = existingFromIndex(html);
+  const today = now.toISOString().slice(0, 10);
   const known = new Set([...builtIn, ...cat.sitcoms.flatMap(s => s.seasons.map(x => x[1])), ...Object.values(cat.seasons).flat().map(x => x[1])]);
-  const allShows = () => [...builtInShows, ...cat.sitcoms.map(s => ({ id: s.id, t: s.t }))];
+  /* Shows the owner approved: copied into the app from scout-config.json. */
+  for (const a of config.approved || []) {
+    if (cat.sitcoms.some(x => x.id === a.id)) continue;
+    cat.sitcoms.push({ min: 600, ...a, approved: true, added: today });
+  }
+  const allShows = () => [...builtInShows, ...cat.sitcoms.map(s => ({ id: s.id, t: s.t, nums: new Set(s.seasons.map(x => seasonNum(x[0])).filter(n => n !== null)) }))];
   const minSecs = (config.minEpisodeMinutes || 15) * 60;
   const report = { newSeasons: [], newShows: [], broken: [], pending: [], skipped: 0, errors: [] };
-  const today = now.toISOString().slice(0, 10);
 
   async function sample(pl) {
     const l = await yt("playlistItems", { part: "contentDetails", playlistId: pl, maxResults: "10" });
@@ -84,15 +91,17 @@ export async function scout({ key, fetchImpl = fetch, now = new Date(), files = 
   function matchShow(name) {
     const k = showKey(name);
     if (k.length < 4) return null;
-    return allShows().find(s => { const sk = showKey(s.t); return sk === k || (sk.length >= 6 && k.includes(sk)) || (k.length >= 6 && sk.includes(k)); }) || null;
+    return allShows().find(s => { const sk = showKey(s.t); return sk === k || (k.startsWith(sk + " ") && k.length - sk.length <= 6); }) || null;
   }
+  const hasNum = (show, n) => (show.nums && show.nums.has(n)) || (cat.seasons[show.id] || []).some(x => seasonNum(x[0]) === n);
   function addSeason(showId, label, pl, showTitle) {
     (cat.seasons[showId] = cat.seasons[showId] || []).push([label, pl]);
     known.add(pl);
     report.newSeasons.push(`${showTitle}: ${label}`);
   }
 
-  /* 1. Trusted channels: new seasons and new series. */
+  const seenPending = new Set(cat.pending.map(x => x.playlist));
+  /* 1. Trusted channels: new seasons go live; new series wait for approval. */
   for (const ch of config.trusted) {
     try {
       let cid = ch.cid;
@@ -112,18 +121,16 @@ export async function scout({ key, fetchImpl = fetch, now = new Date(), files = 
         if (bare && !existing) { report.skipped++; continue; }
         const s = await sample(p.id);
         if (s.total < 2 || s.full < Math.max(2, Math.ceil(s.total * 0.5)) || s.oldest) { report.skipped++; continue; }
-        const label = n !== null ? (/series/i.test(title) ? "Series " : "Season ") + n : "All episodes";
-        if (existing) { addSeason(existing.id, label, p.id, existing.t); continue; }
-        if (!name || name.length < 3) { report.skipped++; continue; }
-        const id = "auto-" + slug(name);
-        const show = cat.sitcoms.find(x => x.id === id);
-        if (show) { show.seasons.push([label, p.id]); known.add(p.id); report.newSeasons.push(`${show.t}: ${label}`); continue; }
-        cat.sitcoms.push({
-          id, t: name, by: `${ch.name} · ${ch.country}`, b: `Full episodes from ${ch.name}'s official channel.`,
-          min: 600, group: ch.group, ...(ch.ext ? { ext: true } : {}), added: today, seasons: [[label, p.id]]
-        });
-        known.add(p.id);
-        report.newShows.push(`${name} (${ch.name})`);
+        if (existing) {
+          // Only a numbered season the app doesn't have yet goes live automatically.
+          if (n === null || hasNum(existing, n)) { report.skipped++; continue; }
+          addSeason(existing.id, (/series/i.test(title) ? "Series " : "Season ") + n, p.id, existing.t);
+          continue;
+        }
+        if (!name || name.length < 3 || seenPending.has(p.id)) { report.skipped++; continue; }
+        // A new series, even from a trusted channel, waits for approval.
+        const entry = { playlist: p.id, title, channel: ch.name, channelId: cid, trusted: true, group: ch.group, found: today };
+        cat.pending.push(entry); seenPending.add(p.id); report.pending.push(entry);
       }
     } catch (e) { report.errors.push(`${ch.name}: ${e.message}`); if (/quota/i.test(e.message)) break; }
   }
@@ -142,7 +149,6 @@ export async function scout({ key, fetchImpl = fetch, now = new Date(), files = 
 
   /* 3. Discovery: possible new official sources, for approval only. */
   const trustedIds = new Set(config.trusted.map(t => t.cid).filter(Boolean));
-  const seenPending = new Set(cat.pending.map(x => x.playlist));
   for (const q of config.searches || []) {
     try {
       const r = await yt("search", { part: "snippet", type: "playlist", q, maxResults: "15" });
@@ -162,7 +168,7 @@ export async function scout({ key, fetchImpl = fetch, now = new Date(), files = 
       }
     } catch (e) { report.errors.push(`Search "${q}": ${e.message}`); if (/quota/i.test(e.message)) break; }
   }
-  cat.pending = cat.pending.slice(-60);
+  cat.pending = cat.pending.slice(-80);
   cat.updated = now.toISOString();
   cat.quotaUsed = quota;
   return { cat, report };
@@ -172,11 +178,13 @@ export function renderReport(cat, report) {
   const lines = [`# Rose Reel scout report`, ``, `Last run: ${cat.updated.slice(0, 16).replace("T", " ")} UTC · YouTube quota used: ${cat.quotaUsed} of 10,000`, ``];
   const sec = (title, items, empty) => { lines.push(`## ${title}`, ""); if (items.length) items.forEach(i => lines.push(`- ${i}`)); else lines.push(empty); lines.push(""); };
   sec("Added to the app this week: new seasons", report.newSeasons, "No new seasons this week.");
-  sec("Added to the app this week: new shows from trusted channels", report.newShows, "No new shows this week.");
+  if (report.newShows.length) sec("Added to the app this week: shows you approved", report.newShows, "");
   sec("Removed: playlists that stopped working", report.broken, "Everything still works.");
-  lines.push("## Waiting for your approval", "", "These look like full-episode series from channels the scout doesn't know yet. They are not in the app. To approve one, add its channel to `trusted` in `scripts/scout-config.json` (or ask Claude to).", "");
-  if (cat.pending.length) cat.pending.slice().reverse().forEach(p => lines.push(`- **${p.title}** by ${p.channel} (${p.subscribers.toLocaleString("en")} subscribers) · https://www.youtube.com/playlist?list=${p.playlist}`));
-  else lines.push("Nothing new to review.");
+  lines.push("## Waiting for your approval", "", "These look like full-episode series. They are not in the app. To approve one, add it to `approved` in `scripts/scout-config.json` (or ask Claude to).", "");
+  const fromTrusted = cat.pending.filter(p => p.trusted), fromNew = cat.pending.filter(p => !p.trusted);
+  if (fromTrusted.length) { lines.push("**From channels already in the app:**", ""); fromTrusted.slice().reverse().forEach(p => lines.push(`- **${p.title}** · ${p.channel} · https://www.youtube.com/playlist?list=${p.playlist}`)); lines.push(""); }
+  if (fromNew.length) { lines.push("**From channels the scout doesn't know yet:**", ""); fromNew.slice().reverse().forEach(p => lines.push(`- **${p.title.replace(/&amp;/g, "&").replace(/&#39;/g, "'")}** by ${p.channel} (${p.subscribers.toLocaleString("en")} subscribers) · https://www.youtube.com/playlist?list=${p.playlist}`)); lines.push(""); }
+  if (!cat.pending.length) lines.push("Nothing new to review.");
   lines.push("");
   if (report.errors.length) sec("Problems during the run", report.errors, "");
   lines.push(`_${report.skipped} playlists were skipped as clips, trailers, old (pre-2000) or not full episodes._`, "");

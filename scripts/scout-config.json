@@ -1,16 +1,64 @@
 {
-  "about": "Settings for the weekly catalogue scout. Trusted channels are official channels whose new full-episode series may be added to Rose Reel automatically. Anything found elsewhere only goes into SCOUT_REPORT.md for approval.",
+  "about": "Settings for the weekly catalogue scout. New numbered seasons of shows already in Rose Reel go live automatically. Every new series waits in SCOUT_REPORT.md until it is added to 'approved' below.",
   "minEpisodeMinutes": 15,
   "trusted": [
-    { "name": "Channel 4 Comedy", "cid": "UCQqaNnVhS1w_iTeFaIJsXog", "group": "uk", "ext": true, "country": "UK" },
-    { "name": "ITV", "cid": "UCoEqHpK5VNVEBRvwL0EW8Gw", "group": "uk", "ext": true, "country": "UK" },
-    { "name": "Mr Bean", "fromPlaylist": "PLC1EDzqtkrh-BX24FyxZ15UzSHutQE_w7", "group": "intl", "country": "UK" },
-    { "name": "Moonbeam Productions", "fromPlaylist": "PLaPVIqSazRuB2b_bfMTB3opstk7Zruf6g", "group": "ke", "country": "Kenya", "bareShow": "auntieboss" },
-    { "name": "Maisha Magic East", "fromPlaylist": "PLvj2ig4-s8wgU7521L5NgWZmRxWl2WYcX", "group": "ke", "country": "Kenya" },
-    { "name": "The Real Househelps of Kawangware", "cid": "UCP456Szyc9zy-f0j3UoHzeg", "group": "ke", "country": "Kenya" },
-    { "name": "FAAN TV", "cid": "UCLLA3OKhzK-tzXFvXhnGKZQ", "group": "ng", "country": "Nigeria" },
-    { "name": "Accelerate TV", "cid": "UCeSLrwEZPSQmt6KwQTzwyzw", "group": "ng", "country": "Nigeria" },
-    { "name": "NdaniTV", "cid": "UCx2qMIoQIchX9o5x38hf1Bw", "group": "ng", "country": "Nigeria" }
+    {
+      "name": "Channel 4 Comedy",
+      "cid": "UCQqaNnVhS1w_iTeFaIJsXog",
+      "group": "uk",
+      "ext": true,
+      "country": "UK"
+    },
+    {
+      "name": "ITV",
+      "cid": "UCoEqHpK5VNVEBRvwL0EW8Gw",
+      "group": "uk",
+      "ext": true,
+      "country": "UK"
+    },
+    {
+      "name": "Mr Bean",
+      "fromPlaylist": "PLC1EDzqtkrh-BX24FyxZ15UzSHutQE_w7",
+      "group": "intl",
+      "country": "UK"
+    },
+    {
+      "name": "Moonbeam Productions",
+      "fromPlaylist": "PLaPVIqSazRuB2b_bfMTB3opstk7Zruf6g",
+      "group": "ke",
+      "country": "Kenya",
+      "bareShow": "auntieboss"
+    },
+    {
+      "name": "Maisha Magic East",
+      "fromPlaylist": "PLvj2ig4-s8wgU7521L5NgWZmRxWl2WYcX",
+      "group": "ke",
+      "country": "Kenya"
+    },
+    {
+      "name": "The Real Househelps of Kawangware",
+      "cid": "UCP456Szyc9zy-f0j3UoHzeg",
+      "group": "ke",
+      "country": "Kenya"
+    },
+    {
+      "name": "FAAN TV",
+      "cid": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "group": "ng",
+      "country": "Nigeria"
+    },
+    {
+      "name": "Accelerate TV",
+      "cid": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "group": "ng",
+      "country": "Nigeria"
+    },
+    {
+      "name": "NdaniTV",
+      "cid": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "group": "ng",
+      "country": "Nigeria"
+    }
   ],
   "searches": [
     "sitcom full episodes official channel",
@@ -19,5 +67,6 @@
     "kenyan comedy series full episode",
     "south african sitcom full episode"
   ],
-  "discoveryMinSubscribers": 50000
+  "discoveryMinSubscribers": 50000,
+  "approved": []
 }

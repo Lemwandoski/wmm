@@ -1119,7 +1119,7 @@ function applyCatalogue(cat) {
   const retired = new Set(cat.retired || []);
   for (const show of SITCOMS) show.seasons = show.seasons.filter(x => !retired.has(x[1]));
   for (const ns of cat.sitcoms || []) {
-    if (SITCOMS.some(x => x.id === ns.id)) continue;
+    if (SITCOMS.some(x => x.id === ns.id) || !ns.approved) continue;
     ns.seasons = (ns.seasons || []).filter(x => !retired.has(x[1]));
     if (!ns.seasons.length) continue;
     ns.fresh = true;
@@ -1131,7 +1131,7 @@ function applyCatalogue(cat) {
   }
   for (const [id, list] of Object.entries(cat.seasons || {})) {
     const show = SITCOMS.find(x => x.id === id);
-    if (show) mergeSeasons(show, list.filter(x => !retired.has(x[1])));
+    if (show) mergeSeasons(show, list.filter(x => !retired.has(x[1]) && seasonNum(x[0]) !== null));
   }
   for (let i = SITCOMS.length - 1; i >= 0; i--) if (!SITCOMS[i].seasons.length) SITCOMS.splice(i, 1);
 }
