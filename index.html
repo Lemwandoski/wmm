@@ -159,7 +159,13 @@ const YT_KEY = "AIzaSyB9KAj2_it84N0bocK-D9bW0V5iY7R6iNQ";
 
 /* Sitcoms and comedy series, all from the shows' own official channels. Seasons are listed newest first.
    `min` skips trailers and clips (seconds). `newest: true` means the list is newest-first (a channel's uploads). */
+/* Big US sitcoms: their studios don't post full episodes free, so these use the shows' official best-of reels. */
 const SITCOMS = [
+  { id: "office", clips: true, t: "The Office", by: "Official channel · US · 2005", b: "Michael Scott and the Dunder Mifflin crew. Official best-of reels, compilations and favourite scenes.", min: 240, newest: true, seasons: [["Latest uploads", "UUa90xqK2odw1KV5wHU9WRhg"]] },
+  { id: "friends", clips: true, t: "Friends", by: "Official channel · US · 1994–2004", b: "Rachel, Ross, Monica, Chandler, Joey and Phoebe. Official compilations and best-of scenes.", min: 240, newest: true, seasons: [["Latest uploads", "UUijVIIfFzspulKc7yWA2Qhg"]] },
+  { id: "bigbang", clips: true, t: "The Big Bang Theory", by: "Official channel · US · 2007", b: "Sheldon, Leonard, Penny and the gang. Official compilations and best-of scenes.", min: 240, newest: true, seasons: [["Latest uploads", "UUCxmzh3f-wwRZ-bEdLb80Og"]] },
+  { id: "parks", clips: true, t: "Parks and Recreation", by: "Official channel · US · 2009", b: "Leslie Knope and the Pawnee parks department. Official compilations and best-of scenes.", min: 240, newest: true, seasons: [["Latest uploads", "UU084FSD0cO4ZOS5SonULRCQ"]] },
+  { id: "twohalf", clips: true, t: "Two and a Half Men", by: "Official channel · US · 2003", b: "Charlie, Alan and Jake under one Malibu roof. Official compilations and best-of scenes.", min: 240, newest: true, seasons: [["Latest uploads", "UUljRE_acPpAaKI9yPfVZduA"]] },
   { id: "peepshow", ext: true, t: "Peep Show", by: "Channel 4 · UK · 2003", b: "Mark and Jeremy, mismatched flatmates, and the awful thoughts they never say out loud.", min: 600, seasons: [["Full episodes", "PLGmQ1G5rNbwQv2ZZZN1IsDZ6Fivw6e_eE"]] },
   { id: "freshmeat", ext: true, t: "Fresh Meat", by: "Channel 4 · UK · 2011", b: "Six mismatched students share a house through university.", min: 600, seasons: [["Full episodes", "PLf_KREzIQT9k"]] },
   { id: "eeburns", ext: true, t: "Everyone Else Burns", by: "Channel 4 · UK · 2023", b: "A strict religious dad is sure the world is ending; his family has other plans.", min: 600, seasons: [["Series 1", "PLGmQ1G5rNbwTq9mb_hamXJBerxdSI0VOl"]] },
@@ -177,6 +183,9 @@ const SITCOMS = [
 
 /* Newest episodes across the sitcoms above. */
 const NEW_EPISODE_SOURCES = [
+  { show: "office", pl: "UUa90xqK2odw1KV5wHU9WRhg" },
+  { show: "friends", pl: "UUijVIIfFzspulKc7yWA2Qhg" },
+  { show: "bigbang", pl: "UUCxmzh3f-wwRZ-bEdLb80Og" },
   { show: "househelps", pl: "UUP456Szyc9zy-f0j3UoHzeg" },
   { show: "auntieboss", pl: "PLaPVIqSazRuB2b_bfMTB3opstk7Zruf6g" },
   { show: "hullabaloo", pl: "PLvj2ig4-s8wgU7521L5NgWZmRxWl2WYcX" },
@@ -494,7 +503,7 @@ function episodeCard(v, show) {
   return { src: "yt", ng: !!show.ng, key: "yt:" + v.id, ytId: v.id, title: episodeTitle(v.title, show), full: v.title + " " + show.t, desc: v.desc, thumb: v.thumb, dur: v.dur, sub: show.t, date: v.date };
 }
 async function newEpisodes() {
-  const key = "row4:newsit";
+  const key = "row5:newsit";
   const hit = store.get(key);
   if (hit && Date.now() - hit.at < 3 * 3600e3 && hit.items.length) return hit.items;
   const results = await Promise.allSettled(NEW_EPISODE_SOURCES.map(async src => {
@@ -506,7 +515,7 @@ async function newEpisodes() {
   if (!items.length) { const err = results.find(r => r.status === "rejected"); if (err) throw err.reason; }
   items.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   const perShow = {};
-  const out = items.filter(c => (perShow[c.sub] = (perShow[c.sub] || 0) + 1) <= (c.ng ? 3 : 6)).slice(0, 30);
+  const out = items.filter(c => (perShow[c.sub] = (perShow[c.sub] || 0) + 1) <= (c.ng ? 3 : 4)).slice(0, 36);
   store.set(key, { at: Date.now(), items: out });
   return out;
 }
@@ -671,7 +680,7 @@ function renderRows() {
   if (ytKey()) {
     const sit = rowShell("sitcoms", "Sitcoms", "Her favourites, full episodes");
     SITCOMS.forEach(show => {
-      const t = tile(showCard(show), { badge: show.ext ? "Opens YouTube" : "Series" });
+      const t = tile(showCard(show), { badge: show.ext ? "Opens YouTube" : show.clips ? "Best-of reels" : "Series" });
       sit.sc.append(t);
       if (!store.get("showthumb:" + show.id)) fillShowArt(t, show);
     });
@@ -793,7 +802,7 @@ async function openSeries(show, si = 0) {
   const body = $("panelBody");
   const head = el("div");
   head.style.display = "flex"; head.style.flexDirection = "column"; head.style.gap = "12px"; head.style.padding = "4px 0 8px";
-  head.append(el("p", null, show.b + (show.ext ? " Its owner only allows playback on YouTube, so episodes open there in a new tab." : "")));
+  head.append(el("p", null, show.b + (show.ext ? " Its owner only allows playback on YouTube, so episodes open there in a new tab." : show.clips ? " The studio doesn't post full episodes for free, so these are its official compilations." : "")));
   head.lastChild.style.margin = "0"; head.lastChild.style.color = "var(--muted)"; head.lastChild.style.maxWidth = "70ch";
   if (show.seasons.length > 1) {
     const chips = el("div");
@@ -998,7 +1007,7 @@ $("openSearch").addEventListener("click", () => {
     const words = q.toLowerCase().split(/\s+/);
     const local = SITCOMS.map(showCard);
     for (const row of YT_ROWS) { const h = store.get("row7:" + row.id); if (h) local.push(...h.items); }
-    const ne = store.get("row4:newsit"); if (ne) local.push(...ne.items);
+    const ne = store.get("row5:newsit"); if (ne) local.push(...ne.items);
     for (const show of SITCOMS) for (const [, pl] of show.seasons) { const h = store.get("pl3:" + pl); if (h) local.push(...h.items.filter(v => v.dur >= show.min).map(v => episodeCard(v, show))); }
     IA_ROWS.forEach(r => r.items.forEach(it => local.push(iaCard(it))));
     const mine = local.filter(c => { const s = (c.full || c.title) + " " + (c.desc || "") + " " + (c.sub || ""); return words.every(w => s.toLowerCase().includes(w)); });
