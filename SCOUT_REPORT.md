@@ -1,196 +1,13 @@
 # Rose Reel scout report
 
-Last run: 2026-11-05 09:04 UTC · YouTube quota used: 2362 of 10,000
+Last run: 2026-11-05 18:28 UTC · YouTube quota used: 2188 of 10,000
 
 ## Added to the app this week: new seasons
 
-- Big Boys: All episodes
-- The Office: All episodes
-- My Mum, Your Dad: Series 2
-- The Voice UK: Series 8
-- Dancing On Ice 2025: All episodes
-- Mr Bean: The Animated Series: Season 3
 - Mr Bean: The Animated Series: Series 1
 - Mr Bean: The Animated Series: Series 2
-- Mr Bean Cartoon Full Episodes: All episodes
-- Funniest Moments: All episodes
 - Hullabaloo Estate: Season 7
-- Njoro wa Uba: Season 6
 - Hullabaloo Estate: Season 4
-- Njoro wa Uba: Season 4
-- Njoro wa Uba: All episodes
-- Njoro wa Uba: Season 3
-- Magic Magic East: Season 2
-- Njoro wa Uba: Season 2
-- Njoro wa Uba: Season 1
-- Magic Magic East: Season 1
-- AIYETORO TOWN SEASON: Season 2
-- INDUSTREET: Season 2
-- House helps: Series 1
-- INDUSTREET: Season 1
-- Visa On Arrival: Season 9
-- Visa On Arrival: Season 8
-- Visa On Arrival: All episodes
-- Shade Corner: Season 7
-- Shade Corner: All episodes
-- Shade Corner: All episodes
-- OFF THE MENU: Season 3
-- Shade Corner: Season 5
-- Shade Corner: All episodes
-- Streets of Lagos: All episodes
-- The Whole Truth: All episodes
-- The Whole Truth: All episodes
-- Shade Corner: All episodes
-- Shade Corner: All episodes
-- Shade Corner: All episodes
-- Extra Love: All episodes
-- Game On: All episodes
-- NdaniRealTalk: Season 3
-- Rumour Has It: Season 2
-- Real Talk: Season 2
-- The Juice: Season 3
-- Rumour Has It: All episodes
-- Real Talk: All episodes
-- The Juice: Season 1
-
-## Added to the app this week: new shows from trusted channels
-
-- Break Clause (Channel 4 Comedy)
-- Mitchell and Webb Are Not Helping (Channel 4 Comedy)
-- Make That Movie (Channel 4 Comedy)
-- The Box (ITV)
-- The Voice UK (ITV)
-- The Chase Around The World (ITV)
-- Ainsley's World Cup Flavours (ITV)
-- Soccer Aid for UNICEF 2026 (ITV)
-- Nobody's Fool (ITV)
-- Bradley & Barney Walsh: Breaking Dad (ITV)
-- The Neighbourhood (ITV)
-- The Floor (ITV)
-- The Martin Lewis Money Show (ITV)
-- The Great Escapers (ITV)
-- Sorry, I Didn't Know (ITV)
-- Bullseye (ITV)
-- The Jonathan Ross Show: Special Guests (ITV)
-- The Fortune Hotel (ITV)
-- Shark! Celebrity Infested Waters (ITV)
-- Piglets (ITV)
-- Changing Ends (ITV)
-- Transaction - NEW Comedy! (ITV)
-- Noel Edmonds' Kiwi Adventure (ITV)
-- Soccer Aid for UNICEF 2025 (ITV)
-- C*A*U*G*H*T (ITV)
-- The Genius Game (ITV)
-- The Assembly (ITV)
-- Celebrity Big Brother 2025 (ITV)
-- 99 To Beat - Who's The Best At Silly Challenges?! (ITV)
-- Romesh Ranganathan's Parents' Evening (ITV)
-- M&S: Dress The Nation (ITV)
-- Thunderbirds: 60 Years of International Rescue! (ITV)
-- Billy Connolly: Journey to the Edge of the World (ITV)
-- 7-63 Up (ITV)
-- Dancing On Ice 2025 (ITV)
-- Tom Kerridge Cooks Britain (ITV)
-- The Masked Singer: AfterMask (ITV)
-- Champions: Full Gallop (ITV)
-- Laugh Out Loud with: G'wed (ITV)
-- Dancing on Ice 2024 (ITV)
-- I'm A Celebrity...Get Me Out Of Here! 2024 Full Episodes (ITV)
-- Vera - From The Very Beginning! (ITV)
-- Peter Kay Stars In: Cradle To Grave (ITV)
-- Olivia Marries Her Match (ITV)
-- I'm A Celebrity... Unpacked 2024 (ITV)
-- Best Trial Moments: I'm A Celebrity...Get Me Out Of Here! 2024 (ITV)
-- Cooking With The Stars (ITV)
-- Ferne McCann: My Family & Me (ITV)
-- Catch Up On The Soaps! (ITV)
-- The Chase (ITV)
-- For The Love of Dogs with Alison Hammond (ITV)
-- Big Zuu' (ITV)
-- Coronation Street Omnibus (ITV)
-- Emmerdale Omnibus (ITV)
-- My Mum, Your Dad (ITV)
-- An Audience With (ITV)
-- Beat The Chasers (ITV)
-- Everyday Bean (Mr Bean)
-- Funniest Moments (Mr Bean)
-- All Videos (Mr Bean)
-- The Adventures of Mr Bean (Mr Bean)
-- Mr Bean Cartoon Full Episodes (Mr Bean)
-- Special Days 😍 (Mr Bean)
-- Thanksgiving Bean! 🦃 (Mr Bean)
-- Teddy Moments! 🐻 (Mr Bean)
-- Best Bean Moments! 🌟 (Mr Bean)
-- All Things Bean (Mr Bean)
-- Full Episodes Widescreen 🤪 (Mr Bean)
-- Summer Cartoons (Mr Bean)
-- Bean's Classic Moments 👏🏽 (Mr Bean)
-- Mr. Bean Funnies (Mr Bean)
-- Best Cartoon Moments! (Mr Bean)
-- Mr Bean Classic Episodes ⭐ (Mr Bean)
-- Black Friday Bean 🛒💥 (Mr Bean)
-- Happy Hallo-bean! (Mr Bean)
-- Top Toons (Mr Bean)
-- Busy Bean (Mr Bean)
-- Shopping with Mr Bean 🛒 (Mr Bean)
-- Christmas with Bean 🎅🏽 (Mr Bean)
-- Mr Bean Animated Full Episodes 🥰 (Mr Bean)
-- The Official Mr Bean Playlist (Mr Bean)
-- Njoro wa Uba (Maisha Magic East)
-- Maisha Magic (Maisha Magic East)
-- Magic Magic East (Maisha Magic East)
-- Must Watch Full Episodes (Maisha Magic East)
-- Real Househelps Marathon Ep 229-234 (The Real Househelps of Kawangware)
-- AIYETORO TOWN SEASON (FAAN TV)
-- GROUND ZERO REALITY SHOW (FAAN TV)
-- Jenifa The Politician (FAAN TV)
-- House helps (FAAN TV)
-- Jenifa On Lockdown (FAAN TV)
-- INDUSTREET (FAAN TV)
-- The Return Of Jenifa (FAAN TV)
-- Flashback Movies (FAAN TV)
-- HEARSAY Videos (FAAN TV)
-- Nollywood Movies (FAAN TV)
-- Shade Corner (Accelerate TV)
-- Clinically Speaking (Accelerate TV)
-- Streets of Lagos (Accelerate TV)
-- LISTEN With Osi (Accelerate TV)
-- Accelerate Movies (Accelerate TV)
-- OFF THE MENU (Accelerate TV)
-- Big Book of Lies - Book 1: Unbrided (Accelerate TV)
-- Your City, My View (Accelerate TV)
-- The Whole Truth (Accelerate TV)
-- The Big Tech Show (Accelerate TV)
-- Third Avenue (Accelerate TV)
-- Accelerate Filmmaker Project 2020 (Accelerate TV)
-- Access The Stars (Accelerate TV)
-- Brotherhood (Accelerate TV)
-- Accelerate Fashion Talks (Accelerate TV)
-- King Women (Accelerate TV)
-- Extra Love (NdaniTV)
-- The Middle (NdaniTV)
-- CLOSURE (NdaniTV)
-- How I Got Broke (NdaniTV)
-- INVESTED (NdaniTV)
-- Bottomline (NdaniTV)
-- Top 5 Anything (NdaniTV)
-- Banking on Love (NdaniTV)
-- Schooled (NdaniTV)
-- Game On (NdaniTV)
-- Afro City (NdaniTV)
-- Love Like This (NdaniTV)
-- Real Talk (NdaniTV)
-- Rumour Has It (NdaniTV)
-- Afrocity (NdaniTV)
-- NdaniRealTalk (NdaniTV)
-- The Juice (NdaniTV)
-- Analyse This (NdaniTV)
-- Lagos Big Boy (NdaniTV)
-- GTBankFoodDrink Fair (NdaniTV)
-- African Dream (NdaniTV)
-- The New Africa (NdaniTV)
-- Gidi Up (NdaniTV)
-- The Rise of The Super Eagles (NdaniTV)
 
 ## Removed: playlists that stopped working
 
@@ -198,15 +15,93 @@ Everything still works.
 
 ## Waiting for your approval
 
-These look like full-episode series from channels the scout doesn't know yet. They are not in the app. To approve one, add its channel to `trusted` in `scripts/scout-config.json` (or ask Claude to).
+These look like full-episode series. They are not in the app. To approve one, add it to `approved` in `scripts/scout-config.json` (or ask Claude to).
 
-- **The Smart Money Woman Nollywood TV Series  | FULL EPISODES  | SEASON 1 &amp; 2** by Azuwa Studios (fka Smart Money Arese) (101,000 subscribers) · https://www.youtube.com/playlist?list=PL9amPag64gRF6DjfivsK21TCWl0D4XUrP
+**From channels already in the app:**
+
+- **The Juice Season 1** · NdaniTV · https://www.youtube.com/playlist?list=PL6C2199FB441A0DBE
+- **The Rise of The Super Eagles** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezpI3uc6f1Rmlbxaz6dtkHi8
+- **Gidi Up Season 2** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezomW3Wj2A3lPXAzujkw1Eal
+- **The New Africa** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezo0EmUtbP5338KFsGs2gKPt
+- **Real Talk** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezpsAJmAz4fpjvlQjR_WzE5f
+- **African Dream** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezprm4AQoagcNO22xc6yY8jN
+- **Rumour Has It** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezrr_5GOWZajbLE9IwZCTlfM
+- **The Juice Season 3** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezo63hpHjr7962zawqD7VMeC
+- **GTBankFoodDrink Fair** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqUFIAHc3Hx1zt1VqgcO_67
+- **Lagos Big Boy** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqafN2gm9FH783kmvmoEVS2
+- **Analyse This Season 2** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqwt-WATREHIfkw98EQJjMM
+- **Real Talk Season 2** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezpOYHcsHs746wHHy_Ru7tDF
+- **Rumour Has It Season 2** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezprGDtmseHbl39g_Nc5E9tT
+- **NdaniRealTalk Season 3** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezop4l_rcQ2kuT4ovqm5J1dc
+- **The Juice Season 4** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezpjbkXD5jhlf8urRuhcs4Y6
+- **NdaniRealTalk Season 4** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqnb4C6LfKANd-7RRdo2Cv-
+- **GAME ON** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqs32Iqfe1RZ3saxbKNipvd
+- **Afrocity** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezri85o70xZsrid4WXuWrryR
+- **Rumour Has It S3** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqw0AWVOl55-5rQ9dzeeqyR
+- **Real Talk Season 5** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezoJIBax_59K2ErXdIcuREze
+- **Love Like This** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqDhFzlvMu8VIMjKeZnoaAl
+- **Afro City Season 2** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezo6T_0T1FqO9vZO0lSDnJ8v
+- **Game On Season 2** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezpZ7sUqnW3AT521kpBL2qb5
+- **Schooled Season 1** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezowhLFVVL4noT_LHXoJkXEB
+- **Banking on Love** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezpKQhEj2Oz3ifgjSE9zybRF
+- **Top 5 Anything** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqU2K7UyERyYAWOeD9r_ER9
+- **Bottomline** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezrqtPU4NsGwtaIoMwTSmK2U
+- **INVESTED** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezpBTGXhx-jpe4NY3fSD87aw
+- **How I Got Broke** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezp8-n8dYm_DOEIOEGEDJIoo
+- **CLOSURE** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezqvuOxr3DjVc7WxMq4EmC1T
+- **The Middle** · NdaniTV · https://www.youtube.com/playlist?list=PLWuhlzVsmezocZc8OvGv1v7yCj8TpYNjV
+- **EXTRA LOVE | Full Nollywood Series 2026** · NdaniTV · https://www.youtube.com/playlist?list=PLCfuq-oBKrWk
+- **Extra Love** · NdaniTV · https://www.youtube.com/playlist?list=PLTdchjU1nUF8
+- **Shade Corner** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt4rmR2I4_mJdIlSEyqQNLO4
+- **King Women** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5sjOhCf4Eq_0p6htYPEcbf
+- **Accelerate Fashion Talks** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt4oB2Bs0PcIcaE4VXgBOPDu
+- **Shade Corner 2** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt6JuonPaNjHhEs2m16HMf1i
+- **Brotherhood** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5iIvbYuiD1UGZ77gyjD2Br
+- **Shade Corner 3** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt7piygK0XpzUMDGgz_Qu2XY
+- **The Whole Truth** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5yBcmQp6CS9bH973By34RA
+- **Access The Stars** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt6jw9EXc5HTDJOKTHYwFf6x
+- **Accelerate Filmmaker Project 2020** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt71WKBrdSkuZw4AA6724tf1
+- **The Whole Truth - Stay At Home Edition** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5Hk-uEIEcXMkpFXTW29b51
+- **Streets of Lagos** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5As3epsBpfoQv065a-bv8n
+- **Shade Corner 4** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt7GTyUR6GeiErbZzGQIkoZ7
+- **Third Avenue** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt4nh0uXx2YpovOGRgd5MXxb
+- **Shade Corner Season 5** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt7i2ZJV4DKC-Ds9AeOJL6Uh
+- **The Big Tech Show** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt4iIXXR9vuJlQixCutevnB3
+- **Off The Menu Season 3** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5_7Ofsb7BbL1Ay2jpvkhvk
+- **The Whole Truth** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt59ofZPvmhYfK99FXaIa9zL
+- **Your City, My View** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt7L_9prNmXS9bg2H17NkBu7
+- **Big Book of Lies - Book 1: Unbrided** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt6K2PdTmZlPdkZd5Wn19qLI
+- **SHADE CORNER VJ SEARCH** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt407Hv0NPvh0Oy6fG7JykWR
+- **OFF THE MENU SEASON 4** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt7SPnTIHP-csX3EeaIwqivO
+- **SHADE CORNER 6** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt76gD1Sar5eWWB6yOQ61K4O
+- **Accelerate Movies** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt7HfQUemk-MnukkdlAVr2H1
+- **LISTEN With Osi** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5meEvZZrLmdbB_wiR2QNzd
+- **Shade Corner S7** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt4q2P6qwrBN83aZU-l-ucCF
+- **Streets of Lagos** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt6uILjwexFVH8vc5ddthd1y
+- **Clinically Speaking** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5ZpPWW_42zbODmUYoJEeYm
+- **Shade Corner** · Accelerate TV · https://www.youtube.com/playlist?list=PLUqsFygfaTt5kaAdpzqcySUljrzgNG_OA
+- **Nollywood Movies** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj_wXYz_au9xFmIlpkdzYo4D
+- **INDUSTREET SEASON 1 - Playlist** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj8hCKC9dJFHEbpo3sK3Grka
+- **House helps Season 1 - TV Series** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj_s5SHQQLNh_gtn663etbxE
+- **HEARSAY Videos** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj8f1pr5W-AGP8jdvL3ymfFH
+- **Flashback Movies** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj_bQJ0fd9ZT9pwL3oZ8Ccps
+- **INDUSTREET SEASON 2 EPISODE (1 - 13)** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj-Z43hy0cwY4E9UEFaL13ql
+- **The Return Of Jenifa** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj-e86YPRJIJ1_1LBh9efD9Y
+- **INDUSTREET SEASON 3 - Playlist** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj8C9stWo8ExPzstt4QL9xx5
+- **Jenifa On Lockdown** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj_JLQKQpRYBsJdze38sFNSn
+- **House helps Season 2 - TV Series** · FAAN TV · https://www.youtube.com/playlist?list=PLckc9lBUmFj8VPXDwG3TNRbqVUS553EWb
+
+**From channels the scout doesn't know yet:**
+
+- **The Smart Money Woman Nollywood TV Series  | FULL EPISODES  | SEASON 1 & 2** by Azuwa Studios (fka Smart Money Arese) (101,000 subscribers) · https://www.youtube.com/playlist?list=PL9amPag64gRF6DjfivsK21TCWl0D4XUrP
 - **South Africa – Season 6 Full Episodes | Survivor Official** by Survivor Official (159,000 subscribers) · https://www.youtube.com/playlist?list=PLoNzUjV3m1jpaFZElzCTBlbo-hzRJ_zSY
 - **South Africa – Season 9 Full Episodes | Survivor Official** by Survivor Official (159,000 subscribers) · https://www.youtube.com/playlist?list=PLoNzUjV3m1joQDntNN2F6C6rH1yMfK2Bs
 - **South Africa – Season 7 Full Episodes | Survivor Official** by Survivor Official (159,000 subscribers) · https://www.youtube.com/playlist?list=PLoNzUjV3m1joKRu-8XR_FtjBImids-CiD
 - **Wife Swap South Africa | Season 1 | Full Episodes** by Wife Swap World (108,000 subscribers) · https://www.youtube.com/playlist?list=PLhq-fM0UsodToA-7tx0_0QiGBVfxxk1A_
-- **Hello Mr Right KENYA** by St Rembo TV (443,000 subscribers) · https://www.youtube.com/playlist?list=PLOD2N55c1mgU3rVds9x42FZeJzYUZC3Wm
+- **NIA Season 1** by Eddie Butita TV (447,000 subscribers) · https://www.youtube.com/playlist?list=PLDr7CzE6hQBKK_yoDWVQ4vDnkPzal40Hq
+- **Anda Kava Season 1** by Philit Productions (98,000 subscribers) · https://www.youtube.com/playlist?list=PL90zb_ofZExktItYWb4JEFqC5ru5yXPvC
+- **Hello Mr Right KENYA** by St Rembo TV (444,000 subscribers) · https://www.youtube.com/playlist?list=PLOD2N55c1mgU3rVds9x42FZeJzYUZC3Wm
 - **Comedy Circus Season 1 | Full Episodes** by SET India (190,000,000 subscribers) · https://www.youtube.com/playlist?list=PLzufeTFnhupzq3_5mH9C1wU4g6Qt8voQc
-- **Three&#39;s Company  | Full Episodes | Comedy American Sitcom** by BD- Fish Catching Zone  (65,300 subscribers) · https://www.youtube.com/playlist?list=PLA8fNJzQe7Igsr5EP2o2WgnNvMM1rwWQi
 
-_775 playlists were skipped as clips, trailers, old (pre-2000) or not full episodes._
+
+_779 playlists were skipped as clips, trailers, old (pre-2000) or not full episodes._

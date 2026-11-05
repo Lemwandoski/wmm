@@ -1,7 +1,741 @@
 {
   "sitcoms": [],
-  "seasons": {},
+  "seasons": {
+    "bean": [
+      [
+        "Series 1",
+        "PLC1EDzqtkrh8IWwCVEPxcQ1SkMH1mBlA6"
+      ],
+      [
+        "Series 2",
+        "PLC1EDzqtkrh-2F4nbMOEeEkfTWyXW6T0x"
+      ]
+    ],
+    "hullabaloo": [
+      [
+        "Season 7",
+        "PLvj2ig4-s8wgBZfTvoNMcfOROpa69FuIO"
+      ],
+      [
+        "Season 4",
+        "PLvj2ig4-s8whfazrzW4krn7id2UpjVzPj"
+      ]
+    ]
+  },
   "retired": [],
-  "pending": [],
-  "updated": null
+  "pending": [
+    {
+      "playlist": "PLckc9lBUmFj8VPXDwG3TNRbqVUS553EWb",
+      "title": "House helps Season 2 - TV Series",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj_JLQKQpRYBsJdze38sFNSn",
+      "title": "Jenifa On Lockdown",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj8C9stWo8ExPzstt4QL9xx5",
+      "title": "INDUSTREET SEASON 3 - Playlist",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj-e86YPRJIJ1_1LBh9efD9Y",
+      "title": "The Return Of Jenifa",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj-Z43hy0cwY4E9UEFaL13ql",
+      "title": "INDUSTREET SEASON 2 EPISODE (1 - 13)",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj_bQJ0fd9ZT9pwL3oZ8Ccps",
+      "title": "Flashback Movies",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj8f1pr5W-AGP8jdvL3ymfFH",
+      "title": "HEARSAY Videos",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj_s5SHQQLNh_gtn663etbxE",
+      "title": "House helps Season 1 - TV Series",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj8hCKC9dJFHEbpo3sK3Grka",
+      "title": "INDUSTREET SEASON 1 - Playlist",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLckc9lBUmFj_wXYz_au9xFmIlpkdzYo4D",
+      "title": "Nollywood Movies",
+      "channel": "FAAN TV",
+      "channelId": "UCLLA3OKhzK-tzXFvXhnGKZQ",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5kaAdpzqcySUljrzgNG_OA",
+      "title": "Shade Corner",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5ZpPWW_42zbODmUYoJEeYm",
+      "title": "Clinically Speaking",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt6uILjwexFVH8vc5ddthd1y",
+      "title": "Streets of Lagos",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt4q2P6qwrBN83aZU-l-ucCF",
+      "title": "Shade Corner S7",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5meEvZZrLmdbB_wiR2QNzd",
+      "title": "LISTEN With Osi",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt7HfQUemk-MnukkdlAVr2H1",
+      "title": "Accelerate Movies",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt76gD1Sar5eWWB6yOQ61K4O",
+      "title": "SHADE CORNER 6",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt7SPnTIHP-csX3EeaIwqivO",
+      "title": "OFF THE MENU SEASON 4",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt407Hv0NPvh0Oy6fG7JykWR",
+      "title": "SHADE CORNER VJ SEARCH",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt6K2PdTmZlPdkZd5Wn19qLI",
+      "title": "Big Book of Lies - Book 1: Unbrided",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt7L_9prNmXS9bg2H17NkBu7",
+      "title": "Your City, My View",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt59ofZPvmhYfK99FXaIa9zL",
+      "title": "The Whole Truth",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5_7Ofsb7BbL1Ay2jpvkhvk",
+      "title": "Off The Menu Season 3",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt4iIXXR9vuJlQixCutevnB3",
+      "title": "The Big Tech Show",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt7i2ZJV4DKC-Ds9AeOJL6Uh",
+      "title": "Shade Corner Season 5",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt4nh0uXx2YpovOGRgd5MXxb",
+      "title": "Third Avenue",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt7GTyUR6GeiErbZzGQIkoZ7",
+      "title": "Shade Corner 4",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5As3epsBpfoQv065a-bv8n",
+      "title": "Streets of Lagos",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5Hk-uEIEcXMkpFXTW29b51",
+      "title": "The Whole Truth - Stay At Home Edition",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt71WKBrdSkuZw4AA6724tf1",
+      "title": "Accelerate Filmmaker Project 2020",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt6jw9EXc5HTDJOKTHYwFf6x",
+      "title": "Access The Stars",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5yBcmQp6CS9bH973By34RA",
+      "title": "The Whole Truth",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt7piygK0XpzUMDGgz_Qu2XY",
+      "title": "Shade Corner 3",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5iIvbYuiD1UGZ77gyjD2Br",
+      "title": "Brotherhood",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt6JuonPaNjHhEs2m16HMf1i",
+      "title": "Shade Corner 2",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt4oB2Bs0PcIcaE4VXgBOPDu",
+      "title": "Accelerate Fashion Talks",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt5sjOhCf4Eq_0p6htYPEcbf",
+      "title": "King Women",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLUqsFygfaTt4rmR2I4_mJdIlSEyqQNLO4",
+      "title": "Shade Corner",
+      "channel": "Accelerate TV",
+      "channelId": "UCeSLrwEZPSQmt6KwQTzwyzw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLTdchjU1nUF8",
+      "title": "Extra Love",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLCfuq-oBKrWk",
+      "title": "EXTRA LOVE | Full Nollywood Series 2026",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezocZc8OvGv1v7yCj8TpYNjV",
+      "title": "The Middle",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqvuOxr3DjVc7WxMq4EmC1T",
+      "title": "CLOSURE",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezp8-n8dYm_DOEIOEGEDJIoo",
+      "title": "How I Got Broke",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezpBTGXhx-jpe4NY3fSD87aw",
+      "title": "INVESTED",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezrqtPU4NsGwtaIoMwTSmK2U",
+      "title": "Bottomline",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqU2K7UyERyYAWOeD9r_ER9",
+      "title": "Top 5 Anything",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezpKQhEj2Oz3ifgjSE9zybRF",
+      "title": "Banking on Love",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezowhLFVVL4noT_LHXoJkXEB",
+      "title": "Schooled Season 1",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezpZ7sUqnW3AT521kpBL2qb5",
+      "title": "Game On Season 2",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezo6T_0T1FqO9vZO0lSDnJ8v",
+      "title": "Afro City Season 2",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqDhFzlvMu8VIMjKeZnoaAl",
+      "title": "Love Like This",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezoJIBax_59K2ErXdIcuREze",
+      "title": "Real Talk Season 5",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqw0AWVOl55-5rQ9dzeeqyR",
+      "title": "Rumour Has It S3",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezri85o70xZsrid4WXuWrryR",
+      "title": "Afrocity",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqs32Iqfe1RZ3saxbKNipvd",
+      "title": "GAME ON",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqnb4C6LfKANd-7RRdo2Cv-",
+      "title": "NdaniRealTalk Season 4",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezpjbkXD5jhlf8urRuhcs4Y6",
+      "title": "The Juice Season 4",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezop4l_rcQ2kuT4ovqm5J1dc",
+      "title": "NdaniRealTalk Season 3",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezprGDtmseHbl39g_Nc5E9tT",
+      "title": "Rumour Has It Season 2",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezpOYHcsHs746wHHy_Ru7tDF",
+      "title": "Real Talk Season 2",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqwt-WATREHIfkw98EQJjMM",
+      "title": "Analyse This Season 2",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqafN2gm9FH783kmvmoEVS2",
+      "title": "Lagos Big Boy",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezqUFIAHc3Hx1zt1VqgcO_67",
+      "title": "GTBankFoodDrink Fair",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezo63hpHjr7962zawqD7VMeC",
+      "title": "The Juice Season 3",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezrr_5GOWZajbLE9IwZCTlfM",
+      "title": "Rumour Has It",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezprm4AQoagcNO22xc6yY8jN",
+      "title": "African Dream",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezpsAJmAz4fpjvlQjR_WzE5f",
+      "title": "Real Talk",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezo0EmUtbP5338KFsGs2gKPt",
+      "title": "The New Africa",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezomW3Wj2A3lPXAzujkw1Eal",
+      "title": "Gidi Up Season 2",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLWuhlzVsmezpI3uc6f1Rmlbxaz6dtkHi8",
+      "title": "The Rise of The Super Eagles",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PL6C2199FB441A0DBE",
+      "title": "The Juice Season 1",
+      "channel": "NdaniTV",
+      "channelId": "UCx2qMIoQIchX9o5x38hf1Bw",
+      "trusted": true,
+      "group": "ng",
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLzufeTFnhupzq3_5mH9C1wU4g6Qt8voQc",
+      "title": "Comedy Circus Season 1 | Full Episodes",
+      "channel": "SET India",
+      "channelId": "UCpEhnqL0y41EpW2TvWAHD7Q",
+      "subscribers": 190000000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLOD2N55c1mgU3rVds9x42FZeJzYUZC3Wm",
+      "title": "Hello Mr Right KENYA",
+      "channel": "St Rembo TV",
+      "channelId": "UC660YaiakYmU1AfOW3sabvQ",
+      "subscribers": 444000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PL90zb_ofZExktItYWb4JEFqC5ru5yXPvC",
+      "title": "Anda Kava Season 1",
+      "channel": "Philit Productions",
+      "channelId": "UCJkeDvr5bvQyBAy92T-FEHQ",
+      "subscribers": 98000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLDr7CzE6hQBKK_yoDWVQ4vDnkPzal40Hq",
+      "title": "NIA Season 1",
+      "channel": "Eddie Butita TV",
+      "channelId": "UClkXE1xfSwdx07G_MkFgQGA",
+      "subscribers": 447000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLhq-fM0UsodToA-7tx0_0QiGBVfxxk1A_",
+      "title": "Wife Swap South Africa | Season 1 | Full Episodes",
+      "channel": "Wife Swap World",
+      "channelId": "UC2ipYujCOUAFxNp2yfCkxHg",
+      "subscribers": 108000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLoNzUjV3m1joKRu-8XR_FtjBImids-CiD",
+      "title": "South Africa – Season 7 Full Episodes | Survivor Official",
+      "channel": "Survivor Official",
+      "channelId": "UCjIC3e9nBnAHqGNCPXzdOcA",
+      "subscribers": 159000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLoNzUjV3m1joQDntNN2F6C6rH1yMfK2Bs",
+      "title": "South Africa – Season 9 Full Episodes | Survivor Official",
+      "channel": "Survivor Official",
+      "channelId": "UCjIC3e9nBnAHqGNCPXzdOcA",
+      "subscribers": 159000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PLoNzUjV3m1jpaFZElzCTBlbo-hzRJ_zSY",
+      "title": "South Africa – Season 6 Full Episodes | Survivor Official",
+      "channel": "Survivor Official",
+      "channelId": "UCjIC3e9nBnAHqGNCPXzdOcA",
+      "subscribers": 159000,
+      "found": "2026-11-05"
+    },
+    {
+      "playlist": "PL9amPag64gRF6DjfivsK21TCWl0D4XUrP",
+      "title": "The Smart Money Woman Nollywood TV Series  | FULL EPISODES  | SEASON 1 &amp; 2",
+      "channel": "Azuwa Studios (fka Smart Money Arese)",
+      "channelId": "UC_ZEJ9iYBPL7_YFjJvSsIpQ",
+      "subscribers": 101000,
+      "found": "2026-11-05"
+    }
+  ],
+  "updated": "2026-11-05T18:28:43.115Z",
+  "quotaUsed": 2188
 }
