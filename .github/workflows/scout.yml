@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "17 4 * * 1"   # Mondays 07:17 Nairobi time
   workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/scout.yml"
 
 permissions:
   contents: write
