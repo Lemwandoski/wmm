@@ -130,7 +130,7 @@ kbd { font-family: var(--body); font-weight: 700; background: var(--surface); bo
 <main class="gut" id="rows"></main>
 
 <footer class="gut">
-  <p>Everything on Rose Reel is free and legal: sitcoms, sport and movies from 2000 onwards, posted by the shows' and studios' own official YouTube channels, plus films their makers released for everyone (from the Internet Archive). YouTube films include YouTube's ads.</p>
+  <p>Everything on Rose Reel is free and legal: sitcoms, series and movies from 2000 onwards, posted by the shows' and studios' own official YouTube channels, plus films their makers released for everyone (from the Internet Archive). YouTube films include YouTube's ads.</p>
   <p>Remote: <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>OK</kbd> play · <kbd>Back</kbd> close · in the player <kbd>OK</kbd> pause, <kbd>←</kbd><kbd>→</kbd> skip 10s.</p>
 </footer>
 
@@ -175,7 +175,7 @@ const SITCOMS = [
   { id: "bean", t: "Mr Bean: The Animated Series", by: "Official Mr Bean channel", b: "Mr Bean and Teddy cause trouble wherever they go. Made from 2002.", min: 600, seasons: [["All episodes", "PLC1EDzqtkrh-BX24FyxZ15UzSHutQE_w7"]] },
   { id: "househelps", t: "The Real Househelps of Kawangware", by: "Kenya · new episodes every Wednesday", b: "Kenya's favourite househelps and the families who can't manage without them.", min: 360, newest: true, filter: "TRHK|Househelps", seasons: [["Latest episodes", "UUP456Szyc9zy-f0j3UoHzeg"]] },
   { id: "hullabaloo", t: "Hullabaloo Estate", by: "Maisha Magic East · Kenya", b: "Neighbours, gossip and schemes in one very loud Nairobi estate.", min: 900, seasons: [["All episodes", "PLvj2ig4-s8wgU7521L5NgWZmRxWl2WYcX"], ["Season 6", "PLvj2ig4-s8whvRtUHM15f7nDUp5_fG6o-"], ["Season 5", "PLvj2ig4-s8wj1nr5CEJZDc899dpFnZcaF"]] },
-  { id: "auntieboss", t: "Auntie Boss!", by: "Moonbeam Productions · Kenya", b: "Shiru runs her court of tenants like a boss, whether they like it or not.", min: 480, seasons: [["Season 16", "PLaPVIqSazRuB2b_bfMTB3opstk7Zruf6g"], ["Season 15", "PLaPVIqSazRuAyc2FGPGIRKGh7CPdzREO_"], ["Season 14", "PLaPVIqSazRuD9n8OOoZVRq5-QlV6dodgp"], ["Season 13", "PLaPVIqSazRuBxfaNjoBHyg9mzD2ApsnNY"], ["Season 12", "PLaPVIqSazRuB5xdu3wr7tF3AGl54F2-f0"], ["Season 11", "PLaPVIqSazRuAzMRBftXS9VRj3U5uc_HRX"], ["Season 10", "PLaPVIqSazRuC7F3NrwUvSWqEKivtt5wlL"], ["Season 9", "PLaPVIqSazRuC_6pKkCxN2CaynRwA7T90J"], ["Season 8", "PLaPVIqSazRuAYc8cChGHajrmy97wMp2em"], ["Season 7", "PLaPVIqSazRuA_gr1DejIV7NmJ3GEX-Sa0"], ["Season 6", "PLaPVIqSazRuBlSDy0rtNBIobmrwn5tbQC"], ["Season 5", "PLaPVIqSazRuBFfrmcEmxQ-M1tDMXbX-Ig"], ["Season 4", "PLaPVIqSazRuBYML4fMpqI9Ssg7CfkZngz"], ["Season 3", "PLaPVIqSazRuDr3DAE1aiCJJoh8YL-XAJL"], ["Season 2", "PLaPVIqSazRuCV3yVLflHs8B2NcZbiAf4d"], ["Season 1", "PLaPVIqSazRuANYk4BKZQZb8kxbOUAkusG"]] },
+  { id: "auntieboss", matchBare: true, t: "Auntie Boss!", by: "Moonbeam Productions · Kenya", b: "Shiru runs her court of tenants like a boss, whether they like it or not.", min: 480, seasons: [["Season 16", "PLaPVIqSazRuB2b_bfMTB3opstk7Zruf6g"], ["Season 15", "PLaPVIqSazRuAyc2FGPGIRKGh7CPdzREO_"], ["Season 14", "PLaPVIqSazRuD9n8OOoZVRq5-QlV6dodgp"], ["Season 13", "PLaPVIqSazRuBxfaNjoBHyg9mzD2ApsnNY"], ["Season 12", "PLaPVIqSazRuB5xdu3wr7tF3AGl54F2-f0"], ["Season 11", "PLaPVIqSazRuAzMRBftXS9VRj3U5uc_HRX"], ["Season 10", "PLaPVIqSazRuC7F3NrwUvSWqEKivtt5wlL"], ["Season 9", "PLaPVIqSazRuC_6pKkCxN2CaynRwA7T90J"], ["Season 8", "PLaPVIqSazRuAYc8cChGHajrmy97wMp2em"], ["Season 7", "PLaPVIqSazRuA_gr1DejIV7NmJ3GEX-Sa0"], ["Season 6", "PLaPVIqSazRuBlSDy0rtNBIobmrwn5tbQC"], ["Season 5", "PLaPVIqSazRuBFfrmcEmxQ-M1tDMXbX-Ig"], ["Season 4", "PLaPVIqSazRuBYML4fMpqI9Ssg7CfkZngz"], ["Season 3", "PLaPVIqSazRuDr3DAE1aiCJJoh8YL-XAJL"], ["Season 2", "PLaPVIqSazRuCV3yVLflHs8B2NcZbiAf4d"], ["Season 1", "PLaPVIqSazRuANYk4BKZQZb8kxbOUAkusG"]] },
   { ng: true, id: "jenifa", t: "Jenifa's Diary", by: "FAAN TV · Nigeria", b: "Funke Akindele's Jenifa, the village girl who thinks she's Lagos royalty, keeps landing in trouble.", min: 900, seasons: [["Season 27", "PLU2DRCnr_cU8"], ["Season 26", "PLCQV5RbzWuBM"], ["Season 25", "PLckc9lBUmFj-uUil-A6LyrT34D_bdMHe7"], ["Season 24", "PLckc9lBUmFj_Xy1esKMbA4bcc9-FObs9n"], ["Season 23", "PLckc9lBUmFj9-dgicjWUPpyv2czoP9pba"], ["Season 22", "PLckc9lBUmFj-oxPO83yJUYkp5ntqypsEI"], ["Season 21", "PLckc9lBUmFj9H1ZTqegWm8PaAglkoO_pO"], ["Season 20", "PLckc9lBUmFj-YL69t-iosertOPQ13syN6"], ["Season 19", "PLckc9lBUmFj-bJrlImz6mh_TnLnP1ye6v"], ["Season 18", "PLckc9lBUmFj_khbR-1TYZgpQ918yEJ2hw"], ["Season 17", "PLckc9lBUmFj8N1vTA1H7SatfRpAlcS94R"], ["Season 16", "PLckc9lBUmFj-Wjnu4phCXpF_45vERPCm7"], ["Season 15", "PLckc9lBUmFj98f2KVd2nMcN687hJLBRZK"], ["Season 14", "PLckc9lBUmFj-6G18X_OnS4rQY4fVqPF74"], ["Season 13", "PLckc9lBUmFj_1R1VJV9rjlDjq-EEH4oxv"], ["Season 12", "PLckc9lBUmFj-uly8jC46qjJhoEXmuuja_"], ["Season 11", "PLckc9lBUmFj-ru9suIdWchFtmGqPW-cG6"], ["Season 10", "PLckc9lBUmFj84V0wBGue1Wx13iOHIeTlZ"], ["Season 9", "PLckc9lBUmFj_4gH9nYF8jTA9EXsY3kR0O"], ["Season 8", "PLckc9lBUmFj_1z7Sy_Vwpk8WRUSZlTLAj"], ["Season 7", "PLckc9lBUmFj8DKjnhWjUi84e8IWcrx-NV"], ["Season 6", "PLckc9lBUmFj9UFVfzc6vdsyxGWXg97okg"], ["Season 5", "PLckc9lBUmFj_QPCVICcEukIY4gzJMaEpy"], ["Season 4", "PLckc9lBUmFj8-15-LpwHmv-eLRfeebL6w"], ["Season 3", "PLckc9lBUmFj9z-MH4l-SegLvonNv2YsvX"], ["Season 2", "PLckc9lBUmFj-5cdz5jxar48Qq3vqMlW_o"], ["Season 1", "PLckc9lBUmFj8CRLpUQtT-XRvMQ_M-jCw5"]] },
   { ng: true, id: "visa", t: "Visa On Arrival", by: "Accelerate TV · Nigeria", b: "Chaos at a Lagos visa office, where every applicant has a story and none of them add up.", min: 600, seasons: [["All episodes", "PLUqsFygfaTt6Dp-ohNdt1aGEy6RDwyNpD"], ["Season 9", "PLB0bcO8Kvnr8"], ["Season 8", "PLUqsFygfaTt5WUE5PNtGR66BiWivsebMI"], ["Season 7", "PLUqsFygfaTt6WTWVENsNKmElXzj8cdI0W"], ["Season 6", "PLUqsFygfaTt6lFjbg6tf1gMc7YbgKG5ny"], ["Season 5", "PLUqsFygfaTt5wrzMjrwmO58IC3Uo3ZUOu"], ["Season 3", "PLUqsFygfaTt7Z5O8gqBgR2J0JL9vYjeXP"], ["Season 2", "PLUqsFygfaTt6Et6yv1_WJi_769xMOLeXN"]] },
   { ng: true, id: "skinny", t: "Skinny Girl in Transit", by: "NdaniTV · Nigeria", b: "Tiwalade's family wants her slimmer and married; she just wants to be happy. A romantic comedy series.", min: 300, seasons: [["All seasons", "PLSSGL8bf8NXc"]] }
@@ -194,9 +194,6 @@ const NEW_EPISODE_SOURCES = [
 
 /* Free services that only play in their own app or site. These tiles open them in a new tab. */
 const OUTSIDE = [
-  { t: "DAZN", b: "A free account gets some live matches every week: LaLiga, Serie A, boxing and more.", by: "Live sport · free sign-up", url: "https://www.dazn.com/" },
-  { t: "FIFA+", b: "Free live African qualifiers, women's football and match replays.", by: "Live football", url: "https://www.plus.fifa.com/" },
-  { t: "Match finder", b: "Today's football fixtures and which channel or stream shows each game.", by: "Fixtures guide", url: "https://www.livesoccertv.com/" },
   { t: "Plex", b: "Thousands of free films and series, plus live TV channels. Works in Kenya.", by: "Free with ads", url: "https://watch.plex.tv/" },
   { t: "YouTube Movies", b: "YouTube's own section of free films with ads.", by: "Free with ads", url: "https://www.youtube.com/feed/storefront" },
   { t: "AfroLandTV", b: "Free African and Black-diaspora films and series.", by: "Free with ads", url: "https://www.afrolandtv.com/" },
@@ -207,16 +204,6 @@ const OUTSIDE = [
    year "strict": keep only films whose title or description names a year from 2000 on.
    year "loose": drop any film that names a year before 2000 (for channels that only post recent films). */
 const YT_ROWS = [
-  { id: "football", title: "Football", sub: "Highlights from the Premier League, Serie A and Bundesliga", min: 150, channels: [
-    { cid: "UCG5qGWdu8nIRZqJ_GgDwQ-w", name: "Premier League", year: "loose" },
-    { cid: "UCBJeMCIeLQos7wacox4hmLQ", name: "Serie A", year: "loose" },
-    { cid: "UC6UL29enLNe4mqwTfAyeNuw", name: "Bundesliga", year: "loose" }
-  ]},
-  { id: "moresport", title: "NBA, UFC and athletics", sub: "Official highlights and big moments", min: 150, channels: [
-    { cid: "UCWJ2lWNubArHWmf3FIHbfcQ", name: "NBA", year: "loose" },
-    { cid: "UCvgfXK4nTYKudb0rFR6noLA", name: "UFC", year: "loose" },
-    { cid: "UCQk7fWv15ChjMJLCRVmtApw", name: "World Athletics", year: "loose" }
-  ]},
   { id: "nolly", title: "New Nollywood", sub: "Fresh full movies from official producers", min: 2400, channels: [
     { handle: "@IBAKATV", name: "IBAKATV", year: "loose" },
     { handle: "@RuthKadiri247", name: "Ruth Kadiri 247", year: "loose" },
@@ -680,7 +667,7 @@ function renderRows() {
   if (ytKey()) {
     const sit = rowShell("sitcoms", "Sitcoms", "Her favourites, full episodes");
     SITCOMS.forEach(show => {
-      const t = tile(showCard(show), { badge: show.ext ? "Opens YouTube" : show.clips ? "Best-of reels" : "Series" });
+      const t = tile(showCard(show), { badge: show.fresh ? "New show" : show.ext ? "Opens YouTube" : show.clips ? "Best-of reels" : "Series" });
       sit.sc.append(t);
       if (!store.get("showthumb:" + show.id)) fillShowArt(t, show);
     });
@@ -712,7 +699,7 @@ function renderRows() {
     n.sc.replaceWith(el("p", "notice", "Recent Nollywood and Hollywood films appear here once the YouTube key is added."));
     main.append(n.sec);
   }
-  const ext = rowShell("outside", "More free services", "Live sport and free streaming apps, opened in a new tab");
+  const ext = rowShell("outside", "More free services", "Free streaming apps, opened in a new tab");
   OUTSIDE.forEach(o => ext.sc.append(tile(linkCard(o), { badge: "Opens app" })));
   main.append(ext.sec);
   IA_ROWS.forEach((r, i) => {
@@ -1085,9 +1072,128 @@ document.addEventListener("keydown", e => {
   }
 });
 
+/* ================= Keeping the catalogue fresh =================
+   1. catalogue.json is written every week by the scout on GitHub (scripts/scout.mjs): new seasons, new shows from trusted channels,
+      and playlists that have stopped working.
+   2. The app itself checks each show's channel once a day for new "Season N" / "Series N" playlists. */
+const SEASON_RE = /\b(?:season|series|s)\s*0?(\d{1,2})\b/i;
+const SEASON_SKIP = /promo|teaser|trailer|clip|shorts?\b|best of|best bits|highlight|behind|interview|bts|reaction|recap|webisode|cast|music/i;
+const showKey = t => t.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9 ]/g, " ").replace(/\b(the|a)\b/g, " ").replace(/\s+/g, " ").trim();
+function seasonNum(label) { const m = SEASON_RE.exec(label || ""); return m ? +m[1] : null; }
+function mergeSeasons(show, extra) {
+  const known = new Set(show.seasons.map(x => x[1]));
+  const nums = new Set(show.seasons.map(x => seasonNum(x[0])).filter(n => n !== null));
+  let added = 0;
+  for (const [label, pl] of extra) {
+    const n = seasonNum(label);
+    if (known.has(pl) || (n !== null && nums.has(n))) continue;
+    show.seasons.push([n !== null ? (/series/i.test(label) ? "Series " : "Season ") + n : label, pl]);
+    known.add(pl); if (n !== null) nums.add(n);
+    added++;
+  }
+  if (added) {
+    const fixed = show.seasons.filter(x => seasonNum(x[0]) === null);
+    const numbered = show.seasons.filter(x => seasonNum(x[0]) !== null).sort((a, b) => seasonNum(b[0]) - seasonNum(a[0]));
+    show.seasons = fixed.concat(numbered);
+  }
+  return added;
+}
+async function loadCatalogue() {
+  const urls = ["https://raw.githubusercontent.com/Lemwandoski/wmm/main/catalogue.json?h=" + Math.floor(Date.now() / 3600e3), "catalogue.json"];
+  for (const u of urls) {
+    try {
+      const ctl = new AbortController();
+      const timer = setTimeout(() => ctl.abort(), 3500);
+      const r = await fetch(u, { signal: ctl.signal, cache: "no-store" });
+      clearTimeout(timer);
+      if (!r.ok) continue;
+      const cat = await r.json();
+      store.set("catalogue", cat);
+      return cat;
+    } catch (e) { /* try the next source */ }
+  }
+  return store.get("catalogue", null);
+}
+function applyCatalogue(cat) {
+  if (!cat) return;
+  const retired = new Set(cat.retired || []);
+  for (const show of SITCOMS) show.seasons = show.seasons.filter(x => !retired.has(x[1]));
+  for (const ns of cat.sitcoms || []) {
+    if (SITCOMS.some(x => x.id === ns.id)) continue;
+    ns.seasons = (ns.seasons || []).filter(x => !retired.has(x[1]));
+    if (!ns.seasons.length) continue;
+    ns.fresh = true;
+    let at = SITCOMS.length;
+    if (ns.group === "ke") at = SITCOMS.findIndex(x => x.ng); else if (ns.group !== "ng") at = SITCOMS.findIndex(x => x.id === "bean");
+    if (at < 0) at = SITCOMS.length;
+    if (ns.group === "ng") ns.ng = true;
+    SITCOMS.splice(at, 0, ns);
+  }
+  for (const [id, list] of Object.entries(cat.seasons || {})) {
+    const show = SITCOMS.find(x => x.id === id);
+    if (show) mergeSeasons(show, list.filter(x => !retired.has(x[1])));
+  }
+  for (let i = SITCOMS.length - 1; i >= 0; i--) if (!SITCOMS[i].seasons.length) SITCOMS.splice(i, 1);
+}
+async function showChannel(show) {
+  const key = "showch:" + show.id;
+  const hit = store.get(key);
+  if (hit) return hit;
+  const pl = show.seasons.map(x => x[1]).find(id => id.startsWith("PL"));
+  if (!pl) return null;
+  const r = await yt("playlists", { part: "snippet", id: pl });
+  const cid = r.items && r.items[0] && r.items[0].snippet.channelId;
+  if (cid) store.set(key, cid);
+  return cid || null;
+}
+async function findNewSeasons(show) {
+  if (show.newest) return [];
+  const key = "autos:" + show.id;
+  const hit = store.get(key);
+  if (hit && Date.now() - hit.at < 24 * 3600e3) return hit.list;
+  const cid = await showChannel(show);
+  if (!cid) return [];
+  const name = showKey(show.t);
+  const found = [];
+  let token = "";
+  for (let page = 0; page < 4; page++) {
+    const r = await yt("playlists", { part: "snippet,contentDetails", channelId: cid, maxResults: "50", ...(token ? { pageToken: token } : {}) });
+    for (const p of r.items || []) {
+      const title = p.snippet.title;
+      if (SEASON_SKIP.test(title) || (p.contentDetails.itemCount || 0) < 2) continue;
+      const n = seasonNum(title);
+      if (n === null) continue;
+      const k = showKey(title);
+      const bare = show.matchBare && /^\s*(season|series)\s*0?\d{1,2}\s*$/i.test(title);
+      if (!bare && !k.includes(name)) continue;
+      found.push([(/series/i.test(title) ? "Series " : "Season ") + n, p.id]);
+    }
+    token = r.nextPageToken;
+    if (!token) break;
+  }
+  store.set(key, { at: Date.now(), list: found });
+  return found;
+}
+async function refreshSeasons() {
+  for (const show of SITCOMS) {
+    try {
+      const added = mergeSeasons(show, await findNewSeasons(show));
+      if (added) {
+        const t = [...document.querySelectorAll("#row-sitcoms .tile")].find(x => x._card && x._card.showId === show.id);
+        const badge = t && t.querySelector(".badge");
+        if (badge) badge.textContent = "New season";
+      }
+    } catch (e) { /* quota or network: try again on the next visit */ }
+  }
+}
+
 /* ================= Start ================= */
-renderRows();
-$("heroPlay").focus({ preventScroll: true });
+(async () => {
+  try { applyCatalogue(await loadCatalogue()); } catch (e) {}
+  renderRows();
+  $("heroPlay").focus({ preventScroll: true });
+  if (ytKey()) setTimeout(refreshSeasons, 4000);
+})();
 </script>
 </body>
 </html>
