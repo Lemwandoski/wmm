@@ -1148,7 +1148,7 @@ async function showChannel(show) {
 }
 async function findNewSeasons(show) {
   if (show.newest) return [];
-  const key = "autos:" + show.id;
+  const key = "autos2:" + show.id;
   const hit = store.get(key);
   if (hit && Date.now() - hit.at < 24 * 3600e3) return hit.list;
   const cid = await showChannel(show);
@@ -1171,8 +1171,14 @@ async function findNewSeasons(show) {
     token = r.nextPageToken;
     if (!token) break;
   }
-  store.set(key, { at: Date.now(), list: found });
-  return found;
+  const known = new Set(show.seasons.map(x => x[1]));
+  const checked = [];
+  for (const f of found) {
+    if (known.has(f[1])) { checked.push(f); continue; }
+    try { if ((await playlistVideos(f[1], show.min, show.filter || null, 1)).length >= 2) checked.push(f); } catch (e) {}
+  }
+  store.set(key, { at: Date.now(), list: checked });
+  return checked;
 }
 async function refreshSeasons() {
   for (const show of SITCOMS) {
